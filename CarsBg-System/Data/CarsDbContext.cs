@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarsBg_System.Data
 {
-    public class CarsDbContext : IdentityDbContext
+    public class CarsDbContext : IdentityDbContext<User>
     {
         public CarsDbContext(DbContextOptions<CarsDbContext> options)
             : base(options)
