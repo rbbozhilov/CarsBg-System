@@ -1,6 +1,12 @@
 using CarsBg_System.Data;
 using CarsBg_System.Data.Models;
 using CarsBg_System.Infrastructure;
+using CarsBg_System.Services.Car;
+using CarsBg_System.Services.Category;
+using CarsBg_System.Services.Engine;
+using CarsBg_System.Services.Region;
+using CarsBg_System.Services.Transmission;
+using CarsBg_System.Services.WheelDrive;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +29,13 @@ builder.Services.AddDefaultIdentity<User>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<CarsDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<ICarService, CarService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddTransient<IWheelDriveService, WheelDriveService>();
+builder.Services.AddTransient<IEngineService, EngineService>();
+builder.Services.AddTransient<ITransmissionService, TransmissionService>();
+builder.Services.AddTransient<IRegionService, RegionService>();
 
 var app = builder.Build();
 

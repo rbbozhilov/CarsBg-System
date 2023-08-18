@@ -1,0 +1,91 @@
+﻿@model CarFormModel
+
+@{
+    ViewData["Title"] = "Car search";
+}
+
+<form method="get">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="form-group">
+        <label asp-for="BrandId">Choose Brand</label>
+        <select name='BrandId' onchange='if(this.value != 0) { this.form.submit(); }' asp-for="BrandId" class="form-control form-control-sm">
+
+            @foreach (var brand in Model.Brands)
+            {
+                <option value="@brand.Id">@brand.Name</option>
+            }
+        </select>
+        <span asp-validation-for="BrandId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ModelId">Choose Model</label>
+        <select asp-for="ModelId" class="form-control form-control-sm">
+
+            @foreach (var currentModel in Model.Models)
+            {
+                <option value="@currentModel.Id">@currentModel.ModelName</option>
+            }
+        </select>
+        <span asp-validation-for="ModelId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Choose Category (Optional)</label>
+        <select asp-for="CategoryId" class="form-control form-control-sm">
+
+            @foreach (var currentCategory in Model.Categories)
+            {
+                <option value="@currentCategory.Id">@currentCategory.CategoryName</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EngineId">Choose Engine Type (Optional)</label>
+        <select asp-for="EngineId" class="form-control form-control-sm">
+
+            @foreach (var currentEngine in Model.Engines)
+            {
+                <option value="@currentEngine.Id">@currentEngine.EngineName</option>
+            }
+        </select>
+        <span asp-validation-for="EngineId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TransmissionId">Choose Transmission (Optinal)</label>
+        <select asp-for="TransmissionId" class="form-control form-control-sm">
+
+            @foreach (var currentTransmission in Model.Transmissions)
+            {
+                <option value="@currentTransmission.Id">@currentTransmission.TransmissionName</option>
+            }
+        </select>
+        <span asp-validation-for="TransmissionId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="WheelDriveId">Choose WheelDrive (Optional)</label>
+        <select asp-for="WheelDriveId" class="form-control form-control-sm">
+
+            @foreach (var currentWheelDrive in Model.WheelDrives)
+            {
+                <option value="@currentWheelDrive.Id">@currentWheelDrive.WheelDriveName</option>
+            }
+        </select>
+        <span asp-validation-for="WheelDriveId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RegionId">Choose Region (Optional)</label>
+        <select asp-for="RegionId" class="form-control form-control-sm">
+
+            @foreach (var currentRegion in Model.Regions)
+            {
+                <option value="@currentRegion.Id">@currentRegion.RegionName</option>
+            }
+        </select>
+        <span asp-validation-for="RegionId" class="small text-danger"> </span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
