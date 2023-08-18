@@ -5,6 +5,7 @@ namespace CarsBg_System.Data.Models
 {
     public class Model
     {
+
         [Key]
         public int Id { get; set; }
 
@@ -17,7 +18,7 @@ namespace CarsBg_System.Data.Models
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
 
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
 
     }
 }

@@ -45,12 +45,12 @@ namespace CarsBg_System.Data.Models
         [ForeignKey(nameof(Engine))]
         public int EngineId { get; set; }
 
-        public Engine Engine { get; set; }
+        public virtual Engine Engine { get; set; }
 
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
 
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
@@ -60,17 +60,17 @@ namespace CarsBg_System.Data.Models
         [ForeignKey(nameof(Region))]
         public int RegionId { get; set; }
 
-        public Region Region { get; set; }
+        public virtual Region Region { get; set; }
 
         [ForeignKey(nameof(Transmission))]
         public int TransmissionId { get; set; }
 
-        public Transmission Transmission { get; set; }
+        public virtual Transmission Transmission { get; set; }
 
         [ForeignKey(nameof(WheelDrive))]
         public int WheelDriveId { get; set; }
 
-        public WheelDrive WheelDrive { get; set; }
+        public virtual WheelDrive WheelDrive { get; set; }
 
         public virtual ICollection<Extra> Extras { get; set; }
     }

@@ -53,6 +53,12 @@ namespace CarsBg_System.Controllers
             });
         }
 
+        public IActionResult Search([FromQuery] CarFormModel query)
+        {
+
+
+            return View();
+        }
 
 
     }

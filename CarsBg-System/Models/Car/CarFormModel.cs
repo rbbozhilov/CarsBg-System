@@ -4,25 +4,24 @@ using CarsBg_System.Views.ViewModels.Engine;
 using CarsBg_System.Views.ViewModels.Region;
 using CarsBg_System.Views.ViewModels.Transmission;
 using CarsBg_System.Views.ViewModels.WheelDrive;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarsBg_System.Models.Car
 {
     public class CarFormModel
     {
 
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
-        public int FromHorsePower { get; set; }
+        public string? FromPrice { get; set; }
 
-        public int ToHorsePower { get; set; }
+        public string? ToPrice { get; set; }
 
-        public decimal FromPrice { get; set; }
+        [Required]
+        public string FromYear { get; set; }
 
-        public decimal ToPrice { get; set; }
-
-        public int FromYear { get; set; }
-
-        public int ToYear { get; set; }
+        [Required]
+        public string ToYear { get; set; }
 
         public int BrandId { get; set; }
         public IEnumerable<BrandViewModel>? Brands { get; set; }
