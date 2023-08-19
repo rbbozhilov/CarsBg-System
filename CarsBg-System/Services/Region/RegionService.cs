@@ -13,7 +13,11 @@ namespace CarsBg_System.Services.Region
             this.data = data;
         }
 
+        public bool IsHaveRegionById(int id)
+        => this.data.Regions.Any(x => x.Id == id);
+
         public IEnumerable<RegionViewModel> GetAllRegions()
         => this.data.Regions.Select(x => new RegionViewModel() { Id = x.Id, RegionName = x.Name });
+
     }
 }

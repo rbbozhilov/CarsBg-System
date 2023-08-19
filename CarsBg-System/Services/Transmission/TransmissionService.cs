@@ -12,8 +12,11 @@ namespace CarsBg_System.Services.Transmission
             this.data = data;
         }
 
+        public bool IsHaveTransmissionById(int id)
+        => this.data.Transmissions.Any(x => x.Id == id);
 
         public IEnumerable<TransmissionViewModel> GetAllTransmissions()
         => this.data.Transmissions.Select(x => new TransmissionViewModel() { Id = x.Id, TransmissionName = x.Name });
+
     }
 }

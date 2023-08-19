@@ -13,7 +13,11 @@ namespace CarsBg_System.Services.WheelDrive
             this.data = data;
         }
 
+        public bool IsHaveWheelDriveById(int id)
+        => this.data.WheelDrives.Any(x => x.Id == id);
+
         public IEnumerable<WheelDriveViewModel> GetAllWheelDrives()
         => this.data.WheelDrives.Select(x => new WheelDriveViewModel() { Id = x.Id, WheelDriveName = x.Name });
+
     }
 }

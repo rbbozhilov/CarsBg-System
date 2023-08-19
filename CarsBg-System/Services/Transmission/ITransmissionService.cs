@@ -5,6 +5,9 @@ namespace CarsBg_System.Services.Transmission
     public interface ITransmissionService
     {
 
+        bool IsHaveTransmissionById(int id);
+
+
         IEnumerable<TransmissionViewModel> GetAllTransmissions();
 
     }

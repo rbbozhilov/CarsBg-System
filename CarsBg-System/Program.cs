@@ -1,9 +1,11 @@
 using CarsBg_System.Data;
 using CarsBg_System.Data.Models;
 using CarsBg_System.Infrastructure;
+using CarsBg_System.Services.Brand;
 using CarsBg_System.Services.Car;
 using CarsBg_System.Services.Category;
 using CarsBg_System.Services.Engine;
+using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Region;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
@@ -36,6 +38,8 @@ builder.Services.AddTransient<IWheelDriveService, WheelDriveService>();
 builder.Services.AddTransient<IEngineService, EngineService>();
 builder.Services.AddTransient<ITransmissionService, TransmissionService>();
 builder.Services.AddTransient<IRegionService, RegionService>();
+builder.Services.AddTransient<IModelService, ModelService>();
+builder.Services.AddTransient<IBrandService, BrandService>();
 
 var app = builder.Build();
 

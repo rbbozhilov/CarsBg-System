@@ -27,5 +27,35 @@ namespace CarsBg_System.Services.Car
 
             return getAllModelsByBrand;
         }
+
+        public IQueryable<Data.Models.Car> GetCarsByBrand(int brandId)
+        => this.data.Cars.Where(x => x.Model.BrandId == brandId);
+
+        public IQueryable<Data.Models.Car> GetCarsByCategory(int categoryId, IQueryable<CarsBg_System.Data.Models.Car> query)
+        => query.Where(x => x.CategoryId == categoryId);
+
+        public IQueryable<Data.Models.Car> GetCarsByColor(string color, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.Color.ToLower() == color.ToLower());
+
+        public IQueryable<Data.Models.Car> GetCarsByEngineType(int engineId, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.EngineId == engineId);
+
+        public IQueryable<Data.Models.Car> GetCarsByModel(int modelId, IQueryable<CarsBg_System.Data.Models.Car> query)
+        => query.Where(x => x.ModelId == modelId);
+
+        public IQueryable<Data.Models.Car> GetCarsByPrice(decimal from, decimal to, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.Price >= from && x.Price <= to);
+
+        public IQueryable<Data.Models.Car> GetCarsByRegion(int regionId, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.RegionId == regionId);
+
+        public IQueryable<Data.Models.Car> GetCarsByTransmission(int transmissionId, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.TransmissionId == transmissionId);
+
+        public IQueryable<Data.Models.Car> GetCarsByWheelDrive(int wheelDriveId, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.WheelDriveId == wheelDriveId);
+
+        public IQueryable<Data.Models.Car> GetCarsByYear(int from, int to, IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.Date.Year >= from && x.Date.Year <= to);
     }
 }

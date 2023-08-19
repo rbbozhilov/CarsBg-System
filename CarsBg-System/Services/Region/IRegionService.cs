@@ -5,8 +5,9 @@ namespace CarsBg_System.Services.Region
     public interface IRegionService
     {
 
-        IEnumerable<RegionViewModel> GetAllRegions();
+        bool IsHaveRegionById(int id);
 
+        IEnumerable<RegionViewModel> GetAllRegions();
 
     }
 }

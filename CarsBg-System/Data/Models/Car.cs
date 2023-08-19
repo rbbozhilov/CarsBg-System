@@ -47,10 +47,10 @@ namespace CarsBg_System.Data.Models
 
         public virtual Engine Engine { get; set; }
 
-        [ForeignKey(nameof(Brand))]
-        public int BrandId { get; set; }
+        [ForeignKey(nameof(Model))]
+        public int ModelId { get; set; }
 
-        public virtual Brand Brand { get; set; }
+        public virtual Model Model { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }

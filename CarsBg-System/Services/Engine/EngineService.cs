@@ -13,7 +13,12 @@ namespace CarsBg_System.Services.Engine
             this.data = data;
         }
 
+        public bool IsHaveEngineById(int id)
+        => this.data.Engines.Any(x => x.Id == id);
+
         public IEnumerable<EngineViewModel> GetAllEngines()
         => this.data.Engines.Select(x => new EngineViewModel() { Id = x.Id, EngineName = x.Name });
+
+
     }
 }

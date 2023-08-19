@@ -6,6 +6,12 @@ namespace CarsBg_System.Data.Models
     public class Model
     {
 
+        public Model()
+        {
+            this.Cars = new HashSet<Car>();
+        }
+
+
         [Key]
         public int Id { get; set; }
 
@@ -19,6 +25,8 @@ namespace CarsBg_System.Data.Models
         public int BrandId { get; set; }
 
         public virtual Brand Brand { get; set; }
+
+        public virtual ICollection<Car> Cars { get; set; }
 
     }
 }

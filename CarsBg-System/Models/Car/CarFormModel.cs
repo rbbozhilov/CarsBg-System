@@ -18,10 +18,10 @@ namespace CarsBg_System.Models.Car
         public string? ToPrice { get; set; }
 
         [Required]
-        public string FromYear { get; set; }
+        public int FromYear { get; set; }
 
         [Required]
-        public string ToYear { get; set; }
+        public int ToYear { get; set; }
 
         public int BrandId { get; set; }
         public IEnumerable<BrandViewModel>? Brands { get; set; }
@@ -30,19 +30,19 @@ namespace CarsBg_System.Models.Car
         public IEnumerable<ModelViewModel>? Models { get; set; }
 
         public int EngineId { get; set; }
-        public IEnumerable<EngineViewModel> Engines { get; set; }
+        public IEnumerable<EngineViewModel>? Engines { get; set; }
 
         public int CategoryId { get; set; }
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
+        public IEnumerable<CategoryViewModel>? Categories { get; set; }
 
         public int RegionId { get; set; }
-        public IEnumerable<RegionViewModel> Regions { get; set; }
+        public IEnumerable<RegionViewModel>? Regions { get; set; }
 
         public int TransmissionId { get; set; }
-        public IEnumerable<TransmissionViewModel> Transmissions { get; set; }
+        public IEnumerable<TransmissionViewModel>? Transmissions { get; set; }
 
         public int WheelDriveId { get; set; }
-        public IEnumerable<WheelDriveViewModel> WheelDrives { get; set; }
+        public IEnumerable<WheelDriveViewModel>? WheelDrives { get; set; }
 
 
     }

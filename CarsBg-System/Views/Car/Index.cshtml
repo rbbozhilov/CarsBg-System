@@ -6,7 +6,7 @@
 
 <form method="get">
     <div class="form-group">
-
+        @Html.ValidationSummary(false, "", new { @class = "alert-danger"})
         <label asp-for="BrandId">Choose Brand</label>
         <select name='BrandId' onchange='if(this.value != 0) { this.form.submit(); }' asp-for="BrandId" class="form-control form-control-sm">
 
@@ -72,13 +72,13 @@
 
     <div class="form-group">
         <label asp-for="FromYear">From Year (Required *)</label>
-        <input asp-for="FromYear" type="text" min="1900" max="2099" step="1" class="form-control">
+        <input asp-for="FromYear" type="number" min="1900" max="2099" step="1" value="2016" class="form-control">
         <span asp-validation-for="FromYear" class="small text-danger"> </span>
     </div>
 
     <div class="form-group">
         <label asp-for="ToYear">To Year (Required *)</label>
-        <input asp-for="ToYear" type="text" min="1900" max="2099" step="1" class="form-control">
+        <input asp-for="ToYear" type="number" min="1900" max="2099" step="1" value="2020" class="form-control">
         <span asp-validation-for="ToYear" class="small text-danger"> </span>
     </div>
 

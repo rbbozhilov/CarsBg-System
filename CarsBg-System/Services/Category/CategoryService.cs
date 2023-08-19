@@ -13,8 +13,11 @@ namespace CarsBg_System.Services.Category
             this.data = data;
         }
 
+        public bool IsHaveCategoryById(int id)
+        => this.data.Categories.Any(x => x.Id == id);
 
         public IEnumerable<CategoryViewModel> GetAllCategories()
         => this.data.Categories.Select(x => new CategoryViewModel() { Id = x.Id, CategoryName = x.Name });
+
     }
 }

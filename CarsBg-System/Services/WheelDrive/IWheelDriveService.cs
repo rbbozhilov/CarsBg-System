@@ -5,6 +5,8 @@ namespace CarsBg_System.Services.WheelDrive
     public interface IWheelDriveService
     {
 
+        bool IsHaveWheelDriveById(int id);
+
         IEnumerable<WheelDriveViewModel> GetAllWheelDrives();
 
     }

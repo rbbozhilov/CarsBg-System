@@ -4,6 +4,7 @@ using CarsBg_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarsBg_System.Migrations
 {
     [DbContext(typeof(CarsDbContext))]
-    partial class CarsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230819163630_SomeCHanges")]
+    partial class SomeCHanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,9 +96,6 @@ namespace CarsBg_System.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -122,8 +121,6 @@ namespace CarsBg_System.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("EngineId");
-
-                    b.HasIndex("ModelId");
 
                     b.HasIndex("RegionId");
 
@@ -511,12 +508,6 @@ namespace CarsBg_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarsBg_System.Data.Models.Model", "Model")
-                        .WithMany("Cars")
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarsBg_System.Data.Models.Region", "Region")
                         .WithMany("Cars")
                         .HasForeignKey("RegionId")
@@ -538,8 +529,6 @@ namespace CarsBg_System.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Engine");
-
-                    b.Navigation("Model");
 
                     b.Navigation("Region");
 
@@ -621,11 +610,6 @@ namespace CarsBg_System.Migrations
                 });
 
             modelBuilder.Entity("CarsBg_System.Data.Models.Engine", b =>
-                {
-                    b.Navigation("Cars");
-                });
-
-            modelBuilder.Entity("CarsBg_System.Data.Models.Model", b =>
                 {
                     b.Navigation("Cars");
                 });
