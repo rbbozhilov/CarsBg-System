@@ -6,7 +6,9 @@ namespace CarsBg_System.Services.Car
     public interface ICarService
     {
 
-        void AddCar(AddCarFormModel carModel);
+        void AddCar(AddCarFormModel carModel,string userId);
+
+        IEnumerable<MyCarsViewModel> GetMyCars(string userId);
 
         IEnumerable<BrandViewModel> GetAllBrands();
 

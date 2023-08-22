@@ -1,4 +1,5 @@
-﻿using CarsBg_System.Models.Car;
+﻿using CarsBg_System.Infrastructure;
+using CarsBg_System.Models.Car;
 using CarsBg_System.Services.Brand;
 using CarsBg_System.Services.Car;
 using CarsBg_System.Services.Category;
@@ -7,6 +8,7 @@ using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Region;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsBg_System.Controllers
@@ -56,14 +58,13 @@ namespace CarsBg_System.Controllers
                 WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
                 Transmissions = this.transmissionService.GetAllTransmissions(),
                 Categories = this.categoryService.GetAllCategories(),
-                Regions = this.regionService.GetAllRegions(),
+                Regions = this.regionService.GetAllRegions()
             });
         }
 
         public IActionResult Search([FromQuery] CarFormModel query)
         {
 
-            //VALIDATIONS
             if (!this.brandService.IsHaveBrandById(query.BrandId))
             {
                 this.ModelState.AddModelError(nameof(query.BrandId), "Don't try stupid things!");
@@ -190,7 +191,7 @@ namespace CarsBg_System.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize]
         public IActionResult Add([FromQuery] AddCarFormModel query)
         {
             var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
@@ -203,11 +204,12 @@ namespace CarsBg_System.Controllers
                 WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
                 Transmissions = this.transmissionService.GetAllTransmissions(),
                 Categories = this.categoryService.GetAllCategories(),
-                Regions = this.regionService.GetAllRegions(),
+                Regions = this.regionService.GetAllRegions()
             });
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddCarFormModel query,string? num)
         {
             var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
@@ -222,12 +224,24 @@ namespace CarsBg_System.Controllers
                     WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
                     Transmissions = this.transmissionService.GetAllTransmissions(),
                     Categories = this.categoryService.GetAllCategories(),
-                    Regions = this.regionService.GetAllRegions(),
+                    Regions = this.regionService.GetAllRegions()
                 });
             }
 
-            this.carService.AddCar(query);
+            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
+
+            this.carService.AddCar(query,userId);
             return RedirectToAction("Index","Home");
+        }
+
+        [Authorize]
+        public IActionResult MyCars()
+        {
+            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
+
+            var myCars = this.carService.GetMyCars(userId);
+
+            return View(myCars);
         }
 
     }

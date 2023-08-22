@@ -72,6 +72,11 @@ namespace CarsBg_System.Data.Models
 
         public virtual WheelDrive WheelDrive { get; set; }
 
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
+
+        public User User { get; set; }
+
         public virtual ICollection<Extra> Extras { get; set; }
     }
 }

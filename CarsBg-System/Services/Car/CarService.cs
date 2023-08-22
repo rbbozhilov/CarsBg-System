@@ -14,7 +14,7 @@ namespace CarsBg_System.Services.Car
             this.data = data;
         }
 
-        public void AddCar(AddCarFormModel carModel)
+        public void AddCar(AddCarFormModel carModel, string userId)
         {
             var car = new CarsBg_System.Data.Models.Car()
             {
@@ -32,6 +32,7 @@ namespace CarsBg_System.Services.Car
                 PhoneNumber = carModel.PhoneNumber,
                 RegionId = carModel.RegionId,
                 Price = carModel.Price,
+                UserId = userId
             };
 
             this.data.Cars.Add(car);
@@ -82,5 +83,17 @@ namespace CarsBg_System.Services.Car
 
         public IQueryable<Data.Models.Car> GetCarsByYear(int from, int to, IQueryable<Data.Models.Car> query)
         => query.Where(x => x.Date.Year >= from && x.Date.Year <= to);
+
+        public IEnumerable<MyCarsViewModel> GetMyCars(string userId)
+        => this.data.Cars
+            .Where(x => x.UserId == userId)
+            .Select(x => new MyCarsViewModel()
+            {
+                Id = x.Id,
+                HorsePower = x.HorsePower,
+                Name = x.Name
+            })
+            .ToList();
+
     }
 }

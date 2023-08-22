@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MyCarsViewModel>
+
+@{
+    ViewData["Title"] = "My Cars";
+}
+
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Horse Power</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+
+                <td>@car.Name</td>
+                <td>@car.HorsePower</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
