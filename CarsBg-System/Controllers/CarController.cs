@@ -102,7 +102,6 @@ namespace CarsBg_System.Controllers
 
             bool fromPriceIsValide = Decimal.TryParse(query.FromPrice, out decimal fromPrice);
             bool toPriceIsValide = Decimal.TryParse(query.ToPrice, out decimal toPrice);
-            //CHECK YEARS ToString()
             bool fromYearIsValide = Int32.TryParse(query.FromYear.ToString(), out int fromYear);
             bool toYearIsValide = Int32.TryParse(query.ToYear.ToString(), out int toYear);
 
@@ -150,8 +149,6 @@ namespace CarsBg_System.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-
-
             var carQuery = this.carService.GetCarsByBrand(query.BrandId);
             carQuery = this.carService.GetCarsByModel(query.ModelId, carQuery);
             carQuery = this.carService.GetCarsByYear(fromYear, toYear, carQuery);
@@ -193,6 +190,45 @@ namespace CarsBg_System.Controllers
 
 
             return RedirectToAction(nameof(Index));
+        }
+
+
+        public IActionResult Add([FromQuery] AddCarFormModel query)
+        {
+            var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
+
+            return View(new AddCarFormModel()
+            {
+                Brands = this.carService.GetAllBrands(),
+                Models = models,
+                Engines = this.engineService.GetAllEngines(),
+                WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
+                Transmissions = this.transmissionService.GetAllTransmissions(),
+                Categories = this.categoryService.GetAllCategories(),
+                Regions = this.regionService.GetAllRegions(),
+            });
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddCarFormModel query,string? num)
+        {
+            var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
+
+            if (!ModelState.IsValid)
+            {
+                return View(new AddCarFormModel()
+                {
+                    Brands = this.carService.GetAllBrands(),
+                    Models = models,
+                    Engines = this.engineService.GetAllEngines(),
+                    WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
+                    Transmissions = this.transmissionService.GetAllTransmissions(),
+                    Categories = this.categoryService.GetAllCategories(),
+                    Regions = this.regionService.GetAllRegions(),
+                });
+            }
+
+            return RedirectToAction("Index","Home");
         }
 
     }

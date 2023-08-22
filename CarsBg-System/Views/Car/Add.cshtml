@@ -1,0 +1,142 @@
+﻿@model AddCarFormModel
+
+@{
+    ViewData["Title"] = "Car search";
+}
+
+<form method="post">
+    <div class="form-group">
+        @Html.ValidationSummary(false, "", new { @class = "alert-danger"})
+        <label asp-for="BrandId">Choose Brand</label>
+        <select name='BrandId' onchange='if(this.value != 0) { this.form.submit(); }' asp-for="BrandId" class="form-control form-control-sm">
+            @foreach (var brand in Model.Brands)
+            {
+                <option value="@brand.Id">@brand.Name</option>
+            }
+        </select>
+        <span asp-validation-for="BrandId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ModelId">Choose Model</label>
+        <select asp-for="ModelId" class="form-control form-control-sm">
+
+            @foreach (var currentModel in Model.Models)
+            {
+                <option value="@currentModel.Id">@currentModel.ModelName</option>
+            }
+        </select>
+        <span asp-validation-for="ModelId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Choose Category (Optional)</label>
+        <select asp-for="CategoryId" class="form-control form-control-sm">
+            <option value="0">All Categories</option>
+            @foreach (var currentCategory in Model.Categories)
+            {
+                <option value="@currentCategory.Id">@currentCategory.CategoryName</option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EngineId">Choose Engine Type (Optional)</label>
+        <select asp-for="EngineId" class="form-control form-control-sm">
+            <option value="0">All Engines</option>
+            @foreach (var currentEngine in Model.Engines)
+            {
+                <option value="@currentEngine.Id">@currentEngine.EngineName</option>
+            }
+        </select>
+        <span asp-validation-for="EngineId" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Color">Color</label>
+        <input placeholder="Input color" asp-for="Color" type="text" class="form-control">
+        <span asp-validation-for="Color" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input placeholder="Input name" asp-for="Name" type="text" class="form-control">
+        <span asp-validation-for="Name" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" type="text" class="form-control" rows="5" id="MessageInputField" autofocus></textarea>
+        <span asp-validation-for="Description" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input placeholder="Input phone number" asp-for="PhoneNumber" type="text" class="form-control">
+        <span asp-validation-for="PhoneNumber" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnginePower">Engine Capacity</label>
+        <input placeholder="Input engine capacity in cc" asp-for="EnginePower" type="text" class="form-control">
+        <span asp-validation-for="EnginePower" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HorsePower">Horse Power</label>
+        <input placeholder="Input horse power" asp-for="HorsePower" type="text" class="form-control">
+        <span asp-validation-for="HorsePower" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price">Price</label>
+        <input placeholder="Input price in lev" asp-for="Price" type="text" class="form-control">
+        <span asp-validation-for="Price" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year">Date</label>
+        <input placeholder="Input date" asp-for="Price" type="date" class="form-control">
+        <span asp-validation-for="Year" class="small text-danger"> </span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TransmissionId">Choose Transmission (Optinal)</label>
+        <select asp-for="TransmissionId" class="form-control form-control-sm">
+            <option value="0">All Transmissions</option>
+            @foreach (var currentTransmission in Model.Transmissions)
+            {
+                <option value="@currentTransmission.Id">@currentTransmission.TransmissionName</option>
+            }
+        </select>
+        <span asp-validation-for="TransmissionId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="WheelDriveId">Choose WheelDrive (Optional)</label>
+        <select asp-for="WheelDriveId" class="form-control form-control-sm">
+            <option value="0">All WheelDrives</option>
+
+            @foreach (var currentWheelDrive in Model.WheelDrives)
+            {
+                <option value="@currentWheelDrive.Id">@currentWheelDrive.WheelDriveName</option>
+            }
+        </select>
+        <span asp-validation-for="WheelDriveId" class="small text-danger"> </span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RegionId">Choose Region (Optional)</label>
+        <select asp-for="RegionId" class="form-control form-control-sm">
+            <option value="0">All Regions</option>
+            @foreach (var currentRegion in Model.Regions)
+            {
+                <option value="@currentRegion.Id">@currentRegion.RegionName</option>
+            }
+        </select>
+        <span asp-validation-for="RegionId" class="small text-danger"> </span>
+    </div>
+    <button asp-action="Add" class="btn btn-primary">Search</button>
+</form>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
+
