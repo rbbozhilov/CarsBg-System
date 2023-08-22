@@ -1,4 +1,5 @@
 ﻿using CarsBg_System.Data;
+using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 
 namespace CarsBg_System.Services.Car
@@ -13,6 +14,30 @@ namespace CarsBg_System.Services.Car
             this.data = data;
         }
 
+        public void AddCar(AddCarFormModel carModel)
+        {
+            var car = new CarsBg_System.Data.Models.Car()
+            {
+                Name = carModel.Name,
+                Color = carModel.Color,
+                CategoryId = carModel.CategoryId,
+                Date = carModel.Year,
+                Description = carModel.Description,
+                TransmissionId = carModel.TransmissionId,
+                WheelDriveId = carModel.WheelDriveId,
+                EngineId = carModel.EngineId,
+                EnginePower = carModel.EnginePower,
+                HorsePower = carModel.HorsePower,
+                ModelId = carModel.ModelId,
+                PhoneNumber = carModel.PhoneNumber,
+                RegionId = carModel.RegionId,
+                Price = carModel.Price,
+            };
+
+            this.data.Cars.Add(car);
+            this.data.SaveChanges();
+
+        }
 
         public IEnumerable<BrandViewModel> GetAllBrands()
         => data.Brands.Select(x => new BrandViewModel() { Id = x.Id, Name = x.Name });

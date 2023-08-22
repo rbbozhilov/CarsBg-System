@@ -185,9 +185,7 @@ namespace CarsBg_System.Controllers
                 carQuery = this.carService.GetCarsByRegion(query.RegionId, carQuery);
             }
 
-
             var cars = carQuery.ToList();
-
 
             return RedirectToAction(nameof(Index));
         }
@@ -228,6 +226,7 @@ namespace CarsBg_System.Controllers
                 });
             }
 
+            this.carService.AddCar(query);
             return RedirectToAction("Index","Home");
         }
 

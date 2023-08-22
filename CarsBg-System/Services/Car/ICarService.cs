@@ -1,9 +1,12 @@
-﻿using CarsBg_System.Views.ViewModels.Cars;
+﻿using CarsBg_System.Models.Car;
+using CarsBg_System.Views.ViewModels.Cars;
 
 namespace CarsBg_System.Services.Car
 {
     public interface ICarService
     {
+
+        void AddCar(AddCarFormModel carModel);
 
         IEnumerable<BrandViewModel> GetAllBrands();
 
