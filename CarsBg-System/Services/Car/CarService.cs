@@ -50,6 +50,20 @@ namespace CarsBg_System.Services.Car
         public IEnumerable<BrandViewModel> GetAllBrands()
         => data.Brands.Select(x => new BrandViewModel() { Id = x.Id, Name = x.Name });
 
+        public IEnumerable<CarViewModel> GetAllCarsBySearch(IQueryable<Data.Models.Car> query)
+        => query.Where(x => x.IsDeleted == false)
+                .Select(x => new CarViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Date = x.Date,
+                    EngineType = x.Engine.Name,
+                    Price = x.Price,
+                    Status = x.Status.StatusName
+                })
+                .ToList();
+
+
         public IEnumerable<ModelViewModel> GetAllModelsByBrand(int brandId)
         {
 
@@ -96,12 +110,12 @@ namespace CarsBg_System.Services.Car
 
             List<Extra> currentExtras = new List<Extra>();
 
-            foreach(var extra in extras)
+            foreach (var extra in extras)
             {
-                
+
                 var getExtra = this.data.Extras.Where(x => x.Id == extra.Id).FirstOrDefault();
 
-                if(getExtra != null)
+                if (getExtra != null)
                 {
                     currentExtras.Add(getExtra);
                 }

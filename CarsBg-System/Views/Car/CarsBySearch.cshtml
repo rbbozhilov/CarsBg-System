@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CarViewModel>
+
+@{
+    ViewData["Title"] = "Cars by search";
+}
+
+<div class="container pb-5 mt-n2 mt-md-n3">
+    <div class="row">
+        <div class="col-xl-9 col-md-8">
+
+            @if (!Model.Any())
+            {
+                <div class="container">
+                    <div class="jumbotron">
+                        <h1>Don't have in the moment cars by this search</h1>
+                        <p>
+                            Please try soon!
+                        </p>
+                    </div>
+                </div>
+            }
+
+            @foreach (var car in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a asp-controller="Car" asp-action="ViewDetails" asp-route-id="@car.Id">@car.Name</a></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@car.EngineType</li>
+                        <li class="list-group-item">@car.Price lv</li>
+                        <li class="list-group-item">@car.Date.Year</li>
+                        <li class="list-group-item">@car.Status</li>
+                    </ul>
+                </div>
+
+
+
+                <br />
+            }
+
+        </div>
+    </div>
+</div>
+</div>

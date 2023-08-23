@@ -186,10 +186,11 @@ namespace CarsBg_System.Controllers
                 carQuery = this.carService.GetCarsByRegion(query.RegionId, carQuery);
             }
 
-            var cars = carQuery.ToList();
+            var cars = this.carService.GetAllCarsBySearch(carQuery);
 
-            return RedirectToAction(nameof(Index));
+            return View("CarsBySearch",cars);
         }
+
 
         [Authorize]
         public IActionResult Add([FromQuery] AddCarFormModel query)

@@ -13,6 +13,8 @@ namespace CarsBg_System.Services.Car
 
         IList<Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
 
+        IEnumerable<CarViewModel> GetAllCarsBySearch(IQueryable<CarsBg_System.Data.Models.Car> query);
+
         IEnumerable<ExtrasViewModel> GetExtras();
 
         IEnumerable<MyCarsViewModel> GetMyCars(string userId);

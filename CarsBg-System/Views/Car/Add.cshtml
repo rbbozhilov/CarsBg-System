@@ -130,6 +130,7 @@
 
     <div class="form-group">
         <label>Add Extras</label>
+        <br />
         @for (var index = 0; index < @Model.Extras.Count(); index++)
         {
             <input type="checkbox" asp-for="@Model.Extras[index].IsChecked" class="form-check-input" />
@@ -141,7 +142,7 @@
             <br />
         }
     </div>
-    <button asp-action="Add" class="btn btn-primary">Search</button>
+    <button asp-action="Add" class="btn btn-primary">Add</button>
 </form>
 
 @section Scripts {
