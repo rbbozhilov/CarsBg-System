@@ -1,6 +1,8 @@
 ﻿using CarsBg_System.Data;
+using CarsBg_System.Data.Models;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
+using CarsBg_System.Views.ViewModels.Extras;
 
 namespace CarsBg_System.Services.Car
 {
@@ -14,7 +16,7 @@ namespace CarsBg_System.Services.Car
             this.data = data;
         }
 
-        public void AddCar(AddCarFormModel carModel, string userId)
+        public void AddCar(AddCarFormModel carModel, string userId, IList<Extra> extras)
         {
             var car = new CarsBg_System.Data.Models.Car()
             {
@@ -34,6 +36,11 @@ namespace CarsBg_System.Services.Car
                 Price = carModel.Price,
                 UserId = userId
             };
+
+            foreach (var item in extras)
+            {
+                car.Extras.Add(item);
+            }
 
             this.data.Cars.Add(car);
             this.data.SaveChanges();
@@ -83,6 +90,33 @@ namespace CarsBg_System.Services.Car
 
         public IQueryable<Data.Models.Car> GetCarsByYear(int from, int to, IQueryable<Data.Models.Car> query)
         => query.Where(x => x.Date.Year >= from && x.Date.Year <= to);
+
+        public IList<Extra> GetChoicedExtras(IList<ExtrasViewModel> extras)
+        {
+
+            List<Extra> currentExtras = new List<Extra>();
+
+            foreach(var extra in extras)
+            {
+                
+                var getExtra = this.data.Extras.Where(x => x.Id == extra.Id).FirstOrDefault();
+
+                if(getExtra != null)
+                {
+                    currentExtras.Add(getExtra);
+                }
+            }
+
+            return currentExtras;
+        }
+
+        public IEnumerable<ExtrasViewModel> GetExtras()
+        => this.data.Extras.Select(x => new ExtrasViewModel()
+        {
+            ExtraName = x.Name,
+            Id = x.Id,
+            IsChecked = false
+        }).ToList();
 
         public IEnumerable<MyCarsViewModel> GetMyCars(string userId)
         => this.data.Cars

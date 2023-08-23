@@ -1,12 +1,19 @@
-﻿using CarsBg_System.Models.Car;
+﻿using CarsBg_System.Data.Models;
+using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
+using CarsBg_System.Views.ViewModels.Extras;
 
 namespace CarsBg_System.Services.Car
 {
     public interface ICarService
     {
 
-        void AddCar(AddCarFormModel carModel,string userId);
+
+        void AddCar(AddCarFormModel carModel,string userId, IList<Extra> extras);
+
+        IList<Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
+
+        IEnumerable<ExtrasViewModel> GetExtras();
 
         IEnumerable<MyCarsViewModel> GetMyCars(string userId);
 

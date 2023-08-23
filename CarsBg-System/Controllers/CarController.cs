@@ -204,7 +204,8 @@ namespace CarsBg_System.Controllers
                 WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
                 Transmissions = this.transmissionService.GetAllTransmissions(),
                 Categories = this.categoryService.GetAllCategories(),
-                Regions = this.regionService.GetAllRegions()
+                Regions = this.regionService.GetAllRegions(),
+                Extras = this.carService.GetExtras().ToList()
             });
         }
 
@@ -224,13 +225,18 @@ namespace CarsBg_System.Controllers
                     WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
                     Transmissions = this.transmissionService.GetAllTransmissions(),
                     Categories = this.categoryService.GetAllCategories(),
-                    Regions = this.regionService.GetAllRegions()
+                    Regions = this.regionService.GetAllRegions(),
+                    Extras = this.carService.GetExtras().ToList()
                 });
             }
 
             var userId = ClaimsPrincipalExtenssions.GetId(this.User);
 
-            this.carService.AddCar(query,userId);
+            var selectedExtras = query.Extras.Where(x => x.IsChecked).ToList();
+
+            var extras = this.carService.GetChoicedExtras(selectedExtras);
+
+            this.carService.AddCar(query,userId,extras);
             return RedirectToAction("Index","Home");
         }
 

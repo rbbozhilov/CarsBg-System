@@ -1,6 +1,7 @@
 ﻿using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Category;
 using CarsBg_System.Views.ViewModels.Engine;
+using CarsBg_System.Views.ViewModels.Extras;
 using CarsBg_System.Views.ViewModels.Region;
 using CarsBg_System.Views.ViewModels.Transmission;
 using CarsBg_System.Views.ViewModels.WheelDrive;
@@ -71,6 +72,8 @@ namespace CarsBg_System.Models.Car
         [Required]
         public int WheelDriveId { get; set; }
         public IEnumerable<WheelDriveViewModel>? WheelDrives { get; set; }
+
+        public IList<ExtrasViewModel>? Extras { get; set; }
 
 
     }

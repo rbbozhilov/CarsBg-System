@@ -8,6 +8,7 @@ namespace CarsBg_System.Data.Models
 
         public Car()
         {
+            this.StatusId = 1;
             this.Extras = new HashSet<Extra>();
         }
 
@@ -72,10 +73,15 @@ namespace CarsBg_System.Data.Models
 
         public virtual WheelDrive WheelDrive { get; set; }
 
+        [ForeignKey(nameof(Status))]
+        public int StatusId { get; set; }
+
+        public virtual Status Status { get; set; }
+
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public virtual ICollection<Extra> Extras { get; set; }
     }
