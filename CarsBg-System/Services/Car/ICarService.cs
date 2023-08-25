@@ -1,4 +1,5 @@
-﻿using CarsBg_System.Data.Models;
+﻿using CarsBg_System.Areas.Admin.Views.ViewModels;
+using CarsBg_System.Data.Models;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
@@ -7,11 +8,13 @@ namespace CarsBg_System.Services.Car
 {
     public interface ICarService
     {
+        public bool Delete(int carId);
 
+        void AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
 
-        void AddCar(AddCarFormModel carModel,string userId, IList<Extra> extras);
+        IList<CarsBg_System.Data.Models.Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
 
-        IList<Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
+        IEnumerable<ShowCarViewModel> ShowCarsForAdmin();
 
         IEnumerable<CarViewModel> GetAllCarsBySearch(IQueryable<CarsBg_System.Data.Models.Car> query);
 
@@ -33,9 +36,9 @@ namespace CarsBg_System.Services.Car
 
         IQueryable<CarsBg_System.Data.Models.Car> GetCarsByColor(string color, IQueryable<CarsBg_System.Data.Models.Car> query);
 
-        IQueryable<CarsBg_System.Data.Models.Car> GetCarsByPrice(decimal from,decimal to, IQueryable<CarsBg_System.Data.Models.Car> query);
+        IQueryable<CarsBg_System.Data.Models.Car> GetCarsByPrice(decimal from, decimal to, IQueryable<CarsBg_System.Data.Models.Car> query);
 
-        IQueryable<CarsBg_System.Data.Models.Car> GetCarsByYear(int from,int to, IQueryable<CarsBg_System.Data.Models.Car> query);
+        IQueryable<CarsBg_System.Data.Models.Car> GetCarsByYear(int from, int to, IQueryable<CarsBg_System.Data.Models.Car> query);
 
         IQueryable<CarsBg_System.Data.Models.Car> GetCarsByTransmission(int transmissionId, IQueryable<CarsBg_System.Data.Models.Car> query);
 

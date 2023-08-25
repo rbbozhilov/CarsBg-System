@@ -1,4 +1,5 @@
-﻿using CarsBg_System.Data;
+﻿using CarsBg_System.Areas.Admin.Views.ViewModels;
+using CarsBg_System.Data;
 using CarsBg_System.Data.Models;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
@@ -16,7 +17,7 @@ namespace CarsBg_System.Services.Car
             this.data = data;
         }
 
-        public void AddCar(AddCarFormModel carModel, string userId, IList<Extra> extras)
+        public void AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras)
         {
             var car = new CarsBg_System.Data.Models.Car()
             {
@@ -46,6 +47,34 @@ namespace CarsBg_System.Services.Car
             this.data.SaveChanges();
 
         }
+
+
+        public bool Delete(int carId)
+        {
+            var car = this.data.Cars.Where(x => x.Id == carId).FirstOrDefault();
+
+            if (car == null || car.IsDeleted == true)
+            {
+                return false;
+            }
+
+            car.IsDeleted = true;
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        public IEnumerable<ShowCarViewModel> ShowCarsForAdmin()
+        => this.data.Cars
+                     .Where(x => x.IsDeleted == false)
+                     .Select(x => new ShowCarViewModel()
+                     {
+                         Id = x.Id,
+                         Name = x.Name,
+                         Price = x.Price
+                     })
+                    .ToList();
+
 
         public IEnumerable<BrandViewModel> GetAllBrands()
         => data.Brands.Select(x => new BrandViewModel() { Id = x.Id, Name = x.Name });
@@ -105,10 +134,10 @@ namespace CarsBg_System.Services.Car
         public IQueryable<Data.Models.Car> GetCarsByYear(int from, int to, IQueryable<Data.Models.Car> query)
         => query.Where(x => x.Date.Year >= from && x.Date.Year <= to);
 
-        public IList<Extra> GetChoicedExtras(IList<ExtrasViewModel> extras)
+        public IList<CarsBg_System.Data.Models.Extra> GetChoicedExtras(IList<ExtrasViewModel> extras)
         {
 
-            List<Extra> currentExtras = new List<Extra>();
+            List<CarsBg_System.Data.Models.Extra> currentExtras = new List<CarsBg_System.Data.Models.Extra>();
 
             foreach (var extra in extras)
             {

@@ -5,8 +5,10 @@ using CarsBg_System.Services.Brand;
 using CarsBg_System.Services.Car;
 using CarsBg_System.Services.Category;
 using CarsBg_System.Services.Engine;
+using CarsBg_System.Services.Extra;
 using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Region;
+using CarsBg_System.Services.Status;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +42,8 @@ builder.Services.AddTransient<ITransmissionService, TransmissionService>();
 builder.Services.AddTransient<IRegionService, RegionService>();
 builder.Services.AddTransient<IModelService, ModelService>();
 builder.Services.AddTransient<IBrandService, BrandService>();
+builder.Services.AddTransient<IStatusService, StatusService>();
+builder.Services.AddTransient<IExtraService, ExtraService>();
 
 var app = builder.Build();
 
