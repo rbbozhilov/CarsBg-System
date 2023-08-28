@@ -34,7 +34,7 @@ namespace CarsBg_System.Services.Engine
 
         public bool Delete(int engineId)
         {
-            var engine = this.data.Categories.Where(x => x.Id == engineId).FirstOrDefault();
+            var engine = this.data.Engines.Where(x => x.Id == engineId).FirstOrDefault();
 
             if (engine == null || engine.IsDeleted == true)
             {

@@ -13,7 +13,7 @@ namespace CarsBg_System.Areas.Admin.Models.Car
 
         [Required]
         public int BrandId { get; set; }
-        public IEnumerable<ShowBrandViewModel> Brands { get; set; }
+        public IEnumerable<ShowBrandViewModel>? Brands { get; set; }
 
     }
 }

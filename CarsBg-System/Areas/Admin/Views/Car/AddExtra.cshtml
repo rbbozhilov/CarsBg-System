@@ -1,6 +1,21 @@
-﻿namespace CarsBg_System.Areas.Admin.Views.Car
-{
-    public class AddExtra
-    {
-    }
+﻿@model ExtraFormModel
+
+@{
+    ViewData["Title"] = "Add Extra";
+}
+
+<form method="post">
+    @Html.ValidationSummary(false, "", new { @class = "alert-danger"})
+    
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input placeholder="Input name" asp-for="Name" type="text" class="form-control">
+        <span asp-validation-for="Name" class="small text-danger"> </span>
+    </div>
+
+    <button asp-action="AddExtra" class="btn btn-primary">Add</button>
+</form>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
 }

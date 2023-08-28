@@ -30,7 +30,7 @@ namespace CarsBg_System.Areas.Admin.Controllers
                 return View(categoryModel);
             }
 
-            bool isDone = categoryService.Add(categoryModel);
+            bool isDone = this.categoryService.Add(categoryModel);
 
             if (!isDone)
             {
@@ -38,7 +38,7 @@ namespace CarsBg_System.Areas.Admin.Controllers
             }
 
 
-            return RedirectToAction("Index", nameof(CarController));
+            return RedirectToAction(nameof(ShowCategory));
         }
 
         public IActionResult ShowCategory(IEnumerable<ShowCategoryViewModel> categoryModel)
@@ -51,7 +51,7 @@ namespace CarsBg_System.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
-            bool isDeleted = categoryService.Delete(id);
+            bool isDeleted = this.categoryService.Delete(id);
 
             if (!isDeleted)
             {

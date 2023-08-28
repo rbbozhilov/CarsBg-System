@@ -2,6 +2,7 @@
 
 namespace CarsBg_System.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class AdminController : Controller
     {
 
