@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ShowCategoryViewModel>
+
+
+
+@{
+    ViewData["Title"] = "All Categories";
+}
+
+<div class="row">
+
+    @if (Model.Any())
+    {
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var currentCategory in Model)
+                {
+                    <tr>
+                        <td>@currentCategory.Name</td>
+                        <td><a asp-controller="Category" asp-action="Delete" asp-route-id="@currentCategory.Id" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1> Don't have classes yet , try soon !</h1>
+    }
