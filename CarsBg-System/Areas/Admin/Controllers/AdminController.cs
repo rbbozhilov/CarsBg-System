@@ -10,7 +10,5 @@ namespace CarsBg_System.Areas.Admin.Controllers
         {
             return View();
         }
-
-
     }
 }

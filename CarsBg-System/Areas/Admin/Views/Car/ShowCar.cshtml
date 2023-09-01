@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<ShowCarViewModel>
 
-
-
 @{
     ViewData["Title"] = "All Cars";
 }
@@ -15,6 +13,7 @@
                 <tr>
                     <th scope="col">Car Name</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
@@ -25,6 +24,7 @@
                     <tr>
                         <td>@currentCar.Name</td>
                         <td>@currentCar.Price</td>
+                        <td><a asp-controller="Car" asp-action="EditCar" asp-route-id="@currentCar.Id" class="btn btn-primary">Edit</a></td>
                         <td><a asp-controller="Car" asp-action="DeleteCar" asp-route-id="@currentCar.Id" class="btn btn-danger">Delete</a></td>
                     </tr>
                 }

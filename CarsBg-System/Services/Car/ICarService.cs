@@ -8,7 +8,14 @@ namespace CarsBg_System.Services.Car
 {
     public interface ICarService
     {
-        public bool Delete(int carId);
+        bool Delete(int carId);
+
+        bool ChangeStatus(int statusId,int carId);
+
+        bool IsHaveCar(int carId);
+
+        CarsBg_System.Data.Models.Car GetCarById(int carId);
+
 
         void AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
 

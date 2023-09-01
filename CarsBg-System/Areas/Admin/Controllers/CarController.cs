@@ -5,6 +5,7 @@ using CarsBg_System.Services.Car;
 using CarsBg_System.Services.Engine;
 using CarsBg_System.Services.Extra;
 using CarsBg_System.Services.Model;
+using CarsBg_System.Services.Status;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace CarsBg_System.Areas.Admin.Controllers
         private IWheelDriveService wheelDriveService;
         private IExtraService extraService;
         private IBrandService brandService;
+        private IStatusService statusService;
 
         public CarController(ICarService carService,
                              IEngineService engineService,
@@ -29,7 +31,8 @@ namespace CarsBg_System.Areas.Admin.Controllers
                              IModelService modelService,
                              IWheelDriveService wheelDriveService,
                              IExtraService extraService,
-                             IBrandService brandService)
+                             IBrandService brandService,
+                             IStatusService statusService)
         {
             this.carService = carService;
             this.engineService = engineService;
@@ -38,13 +41,37 @@ namespace CarsBg_System.Areas.Admin.Controllers
             this.wheelDriveService = wheelDriveService;
             this.extraService = extraService;
             this.brandService = brandService;
+            this.statusService = statusService;
         }
 
-        public IActionResult ShowCar(IEnumerable<ShowCarViewModel> carModel)
+        public IActionResult ShowCar()
         {
             var cars = this.carService.ShowCarsForAdmin();
 
             return View(cars);
+            
+        }
+
+        public IActionResult EditCar()
+        {
+            return View(new CarFormModel()
+            {
+                Statuses = this.statusService.ShowStatuses()
+            });
+        }
+
+        [HttpPost]
+        public IActionResult EditCar(CarFormModel carModel,int id)
+        {
+
+            bool isChanged = this.carService.ChangeStatus(carModel.StatusId,id);
+
+            if (!isChanged)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(ShowCar));
         }
 
         public IActionResult DeleteCar(int id)

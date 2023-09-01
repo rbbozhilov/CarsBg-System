@@ -1,0 +1,26 @@
+﻿@model CarFormModel
+
+@{
+    ViewData["Title"] = "Edit Car";
+}
+
+<form method="post">
+    @Html.ValidationSummary(false, "", new { @class = "alert-danger"})
+
+    <div class="form-group">
+        <label asp-for="StatusId">Choose Status</label>
+        <select name='StatusId' asp-for="StatusId" class="form-control form-control-sm">
+            @foreach (var status in Model.Statuses)
+            {
+                <option value="@status.Id">@status.Name</option>
+            }
+        </select>
+        <span asp-validation-for="StatusId" class="small text-danger"> </span>
+    </div>
+
+    <button asp-action="EditCar" class="btn btn-primary">Edit</button>
+</form>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

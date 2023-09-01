@@ -48,6 +48,29 @@ namespace CarsBg_System.Services.Car
 
         }
 
+        public bool IsHaveCar(int carId)
+        => this.data.Cars.Any(x => x.Id == carId);
+
+
+        public bool ChangeStatus(int statusId, int carId)
+        {
+            var status = this.data.Statuses.Any(x => x.Id == statusId);
+            
+
+            if(!status)
+            {
+                return false;
+            }
+
+            var car = this.GetCarById(carId);
+
+            car.StatusId = statusId;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
 
         public bool Delete(int carId)
         {
@@ -63,6 +86,10 @@ namespace CarsBg_System.Services.Car
 
             return true;
         }
+
+        public CarsBg_System.Data.Models.Car GetCarById(int id)
+        => this.data.Cars.FirstOrDefault(x => x.Id == id);
+
 
         public IEnumerable<ShowCarViewModel> ShowCarsForAdmin()
         => this.data.Cars
