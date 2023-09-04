@@ -10,6 +10,7 @@ namespace CarsBg_System.Data.Models
         {
             this.StatusId = 1;
             this.Extras = new HashSet<Extra>();
+            this.Images = new HashSet<ImageData>();
         }
 
         [Key]
@@ -84,5 +85,7 @@ namespace CarsBg_System.Data.Models
         public virtual User User { get; set; }
 
         public virtual ICollection<Extra> Extras { get; set; }
+
+        public virtual ICollection<ImageData> Images { get; set; }
     }
 }

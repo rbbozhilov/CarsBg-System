@@ -17,7 +17,7 @@ namespace CarsBg_System.Services.Car
             this.data = data;
         }
 
-        public void AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras)
+        public int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras)
         {
             var car = new CarsBg_System.Data.Models.Car()
             {
@@ -46,6 +46,7 @@ namespace CarsBg_System.Services.Car
             this.data.Cars.Add(car);
             this.data.SaveChanges();
 
+            return car.Id;
         }
 
         public bool IsHaveCar(int carId)

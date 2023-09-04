@@ -1,9 +1,11 @@
 ﻿using CarsBg_System.Infrastructure;
 using CarsBg_System.Models.Car;
+using CarsBg_System.Models.Image;
 using CarsBg_System.Services.Brand;
 using CarsBg_System.Services.Car;
 using CarsBg_System.Services.Category;
 using CarsBg_System.Services.Engine;
+using CarsBg_System.Services.ImageData;
 using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Region;
 using CarsBg_System.Services.Transmission;
@@ -24,6 +26,8 @@ namespace CarsBg_System.Controllers
         private ICategoryService categoryService;
         private IBrandService brandService;
         private IModelService modelService;
+        private IImageService imageService;
+
 
         public CarController(
                               ICarService carService,
@@ -33,7 +37,8 @@ namespace CarsBg_System.Controllers
                               IWheelDriveService wheelDriveService,
                               ITransmissionService transmissionService,
                               IBrandService brandService,
-                              IModelService modelService)
+                              IModelService modelService,
+                              IImageService imageService)
         {
             this.carService = carService;
             this.engineService = engineService;
@@ -43,7 +48,9 @@ namespace CarsBg_System.Controllers
             this.transmissionService = transmissionService;
             this.brandService = brandService;
             this.modelService = modelService;
+            this.imageService = imageService;
         }
+
 
         public IActionResult Index([FromQuery] CarFormModel query)
         {
@@ -188,7 +195,7 @@ namespace CarsBg_System.Controllers
 
             var cars = this.carService.GetAllCarsBySearch(carQuery);
 
-            return View("CarsBySearch",cars);
+            return View("CarsBySearch", cars);
         }
 
 
@@ -212,9 +219,21 @@ namespace CarsBg_System.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(AddCarFormModel query,string? num)
+        [RequestSizeLimit(300 * 1024 * 1024)]
+        public async Task<IActionResult> Add(AddCarFormModel query, IFormFile[] images)
         {
             var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
+
+            if (images.Length > 20)
+            {
+                this.ModelState.AddModelError("images", "You cannot upload more than 20 images");
+            }
+
+            if (images.Any(x => x.Length > 15 * 1024 * 1024))
+            {
+                this.ModelState.AddModelError("images", "Image cannot be larger than 15 MB");
+            }
+
 
             if (!ModelState.IsValid)
             {
@@ -237,8 +256,16 @@ namespace CarsBg_System.Controllers
 
             var extras = this.carService.GetChoicedExtras(selectedExtras);
 
-            this.carService.AddCar(query,userId,extras);
-            return RedirectToAction("Index","Home");
+            var carId = this.carService.AddCar(query, userId, extras);
+
+            await this.imageService.Process(images.Select(i => new ImageInputModel()
+            {
+                Name = i.Name,
+                Type = i.ContentType,
+                Content = i.OpenReadStream()
+            }),carId);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]

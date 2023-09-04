@@ -10,14 +10,13 @@ namespace CarsBg_System.Services.Car
     {
         bool Delete(int carId);
 
-        bool ChangeStatus(int statusId,int carId);
+        bool ChangeStatus(int statusId, int carId);
 
         bool IsHaveCar(int carId);
 
         CarsBg_System.Data.Models.Car GetCarById(int carId);
 
-
-        void AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
+        int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
 
         IList<CarsBg_System.Data.Models.Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
 
