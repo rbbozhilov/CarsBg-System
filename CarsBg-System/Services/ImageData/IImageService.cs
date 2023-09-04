@@ -7,5 +7,12 @@ namespace CarsBg_System.Services.ImageData
 
         Task Process(IEnumerable<ImageInputModel> images,int carId);
 
+        Task<List<string>> GetAllImages();
+
+        Task<Stream> GetCourseImages(string id);
+
+        Task<Stream> GetSmallImage(string id);
+
+
     }
 }

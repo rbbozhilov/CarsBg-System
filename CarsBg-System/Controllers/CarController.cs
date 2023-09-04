@@ -263,7 +263,7 @@ namespace CarsBg_System.Controllers
                 Name = i.Name,
                 Type = i.ContentType,
                 Content = i.OpenReadStream()
-            }),carId);
+            }), carId);
 
             return RedirectToAction("Index", "Home");
         }
@@ -277,6 +277,7 @@ namespace CarsBg_System.Controllers
 
             return View(myCars);
         }
+
 
     }
 }
