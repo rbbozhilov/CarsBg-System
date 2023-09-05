@@ -1,0 +1,77 @@
+﻿@model ExtraFormModel
+
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<link rel="stylesheet" href="~/css/navbarAdmin.css">
+
+
+<div class="jumbotron text-center">
+    <img height=250 weigth=250 src="https://st.depositphotos.com/1002881/1285/i/950/depositphotos_12859789-stock-photo-admin-tag.jpg" />
+</div>
+
+
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Brand
+    </button>
+    <div class="dropdown-menu">
+        <ul>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Brand" asp-action="AddBrand">Add Brand</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Brand" asp-action="ShowBrand">Show Brands</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Car
+    </button>
+    <div class="dropdown-menu">
+        <ul>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="ShowCar">Show Cars</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="AddModel">Add Model</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="ShowModel">Show Models</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="AddExtra">Add Extra</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="ShowExtra">Show Extras</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="AddTransmission">Add Transmission</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="ShowTransmission">Show Transmissions</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="AddWheelDrive">Add WheelDrive</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="ShowWheelDrive">Show WheelDrives</a></li>
+        </ul>
+    </div>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
+    </button>
+    <div class="dropdown-menu">
+        <ul>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="AddCategory">Add Category</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="ShowCategory">Show Categories</a></li>
+        </ul>
+    </div>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Region
+    </button>
+    <div class="dropdown-menu">
+        <ul>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Region" asp-action="AddRegion">Add Region</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Region" asp-action="ShowRegion">Show Regions</a></li>
+        </ul>
+    </div>
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Status
+    </button>
+    <div class="dropdown-menu">
+        <ul>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Status" asp-action="AddStatus">Add Status</a></li>
+            <li> <a class="dropdown-item" asp-area="Admin" asp-controller="Status" asp-action="ShowStatus">Show Statuses</a></li>
+        </ul>
+    </div>
+</div>
