@@ -1,11 +1,13 @@
 ﻿using CarsBg_System.Areas.Admin.Models.Region;
 using CarsBg_System.Areas.Admin.Views.ViewModels;
 using CarsBg_System.Services.Region;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsBg_System.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class RegionController : Controller
     {
 

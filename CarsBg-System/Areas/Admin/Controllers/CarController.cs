@@ -8,11 +8,13 @@ using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Status;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsBg_System.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class CarController : Controller
     {
 

@@ -1,11 +1,13 @@
 ﻿using CarsBg_System.Areas.Admin.Models.Brand;
 using CarsBg_System.Areas.Admin.Views.ViewModels;
 using CarsBg_System.Services.Brand;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsBg_System.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Administrator")]
     public class BrandController : Controller
     {
 
