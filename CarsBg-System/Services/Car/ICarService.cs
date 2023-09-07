@@ -3,11 +3,13 @@ using CarsBg_System.Data.Models;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
+using CarsBg_System.Views.ViewModels.Home;
 
 namespace CarsBg_System.Services.Car
 {
     public interface ICarService
     {
+
         bool Delete(int carId);
 
         bool ChangeStatus(int statusId, int carId);
@@ -17,6 +19,9 @@ namespace CarsBg_System.Services.Car
         CarsBg_System.Data.Models.Car GetCarById(int carId);
 
         int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
+
+        Task<HomeViewModel> GetVipAndTopCars();
+
 
         IList<CarsBg_System.Data.Models.Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
 

@@ -4,6 +4,8 @@ using CarsBg_System.Data.Models;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
+using CarsBg_System.Views.ViewModels.Home;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarsBg_System.Services.Car
 {
@@ -56,9 +58,9 @@ namespace CarsBg_System.Services.Car
         public bool ChangeStatus(int statusId, int carId)
         {
             var status = this.data.Statuses.Any(x => x.Id == statusId);
-            
 
-            if(!status)
+
+            if (!status)
             {
                 return false;
             }
@@ -90,6 +92,14 @@ namespace CarsBg_System.Services.Car
 
         public CarsBg_System.Data.Models.Car GetCarById(int id)
         => this.data.Cars.FirstOrDefault(x => x.Id == id);
+
+
+        public async Task<HomeViewModel> GetVipAndTopCars()
+        => new HomeViewModel()
+        {
+            TopCarsImages = await this.GetTopCars(),
+            VipCarsImages = await this.GetVipCars()
+        };
 
 
         public IEnumerable<ShowCarViewModel> ShowCarsForAdmin()
@@ -199,6 +209,34 @@ namespace CarsBg_System.Services.Car
                 Name = x.Name
             })
             .ToList();
+
+
+        private async Task<List<TopCarsViewModel>> GetTopCars()
+        => await this.data.Cars
+                            .Where(x => x.IsDeleted == false && x.Status.StatusName == "Top")
+                            .OrderByDescending(x => x.Price)
+                            .Select(x => new TopCarsViewModel()
+                            {
+                                CarId = x.Id,
+                                ImageId = x.Images.FirstOrDefault().Id.ToString()
+                            })
+                            .Take(5)
+                            .ToListAsync();
+
+
+
+
+        private async Task<List<VipCarsViewModel>> GetVipCars()
+        => await this.data.Cars
+                            .Where(x => x.IsDeleted == false && x.Status.StatusName == "Vip")
+                            .OrderByDescending(x => x.Price)
+                            .Select(x => new VipCarsViewModel()
+                            {
+                                CarId = x.Id,
+                                ImageId = x.Images.FirstOrDefault().Id.ToString()
+                            })
+                            .Take(5)
+                            .ToListAsync();
 
     }
 }

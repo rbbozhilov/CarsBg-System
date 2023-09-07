@@ -1,7 +1,10 @@
-﻿@model List<string>
+﻿@model HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
+    int allCars = @Model.VipCarsImages.Count + @Model.TopCarsImages.Count;
+    int indicatorCount = 0;
+    int itemActive = 0;
 }
 
 
@@ -11,37 +14,65 @@
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    @for (int i = 0; i < allCars; i++)
+                    {
+
+                        if (indicatorCount == 0)
+                        {
+                            <li data-target="#myCarousel" data-slide-to="@indicatorCount" class="active"></li>
+                            indicatorCount++;
+                            continue;
+                        }
+
+                        <li data-target="#myCarousel" data-slide-to="@indicatorCount"></li>
+                        indicatorCount++;
+                    }
                 </ol>
 
                 <!-- Wrapper for slides -->
 
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="/Home/Small/@Model[0]" />
-                        <div class="carousel-caption">
-                            <h3>Sell $</h3>
-                            <p>Money Money.</p>
-                        </div>
-                    </div>
 
-                    <div class="item">
-                        <img src="/Home/Small/@Model[1]" />
-                        <div class="carousel-caption">
-                            <h3>Sell $</h3>
-                            <p>Money Money.</p>
-                        </div>
-                    </div>
+                    @foreach (var vipCarImage in @Model.VipCarsImages)
+                    {
+                        @if (itemActive == 0)
+                        {
+                            itemActive++;
 
-                    <div class="item">
-                        <img src="/Home/Small/@Model[2]" />
-                        <div class="carousel-caption">
-                            <h3>Sell $</h3>
-                            <p>Money Money.</p>
+                            <div class="item active">
+                                <img src="/Home/CourseImages/@vipCarImage.ImageId" />
+                                <div class="carousel-caption">
+                                    <h3>Sell $</h3>
+                                    <p>Money Money.</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item">
+                                <img src="/Home/CourseImages/@vipCarImage.ImageId" />
+                                <div class="carousel-caption">
+                                    <h3>Sell $</h3>
+                                    <p>Money Money.</p>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                    @foreach (var topCarsImage in @Model.TopCarsImages)
+                    {
+
+                        <div class="item">
+                            <img src="/Home/CourseImages/@topCarsImage.ImageId" />
+                            <div class="carousel-caption">
+                                <h3>Sell $</h3>
+                                <p>Money Money.</p>
+                            </div>
                         </div>
-                    </div>
+
+                    }
+
 
                 </div>
 

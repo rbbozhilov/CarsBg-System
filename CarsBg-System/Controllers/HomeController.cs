@@ -1,5 +1,7 @@
 ﻿using CarsBg_System.Models;
+using CarsBg_System.Services.Car;
 using CarsBg_System.Services.ImageData;
+using CarsBg_System.Views.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.Diagnostics;
@@ -10,21 +12,23 @@ namespace CarsBg_System.Controllers
     {
 
         private IImageService imageService;
+        private ICarService carService;
 
-        public HomeController(IImageService imageService)
+        public HomeController(IImageService imageService, ICarService carService)
         {
             this.imageService = imageService;
+            this.carService = carService;
         }
 
         public async Task<IActionResult> Index()
         {
 
-            var something = await this.imageService.GetAllImages();
+            var cars = await this.carService.GetVipAndTopCars();
 
-            return View(something);
+            return View(cars);
         }
 
-        public async Task<IActionResult> Small(string id)
+        public async Task<IActionResult> CourseImages(string id)
         {
             return this.ReturnImage(await this.imageService.GetCourseImages(id));
         }

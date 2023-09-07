@@ -3,11 +3,9 @@
     public class HomeViewModel
     {
 
-        public List<string> VipCarsImages { get; set; }
+        public List<VipCarsViewModel> VipCarsImages { get; set; }
 
-
-        public List<string> TopCarsImages { get; set; }
-
+        public List<TopCarsViewModel> TopCarsImages { get; set; }
 
     }
 }
