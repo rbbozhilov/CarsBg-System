@@ -278,6 +278,20 @@ namespace CarsBg_System.Controllers
             return View(myCars);
         }
 
+        public IActionResult ViewCar(int id)
+        {
+
+            var currentCar = this.carService.ShowCarFullInformation(id);
+
+            if(currentCar == null)
+            {
+                return BadRequest();
+            }
+
+
+            return View(currentCar);
+        }
+
 
     }
 }

@@ -20,8 +20,9 @@ namespace CarsBg_System.Services.Car
 
         int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
 
-        Task<HomeViewModel> GetVipAndTopCars();
+        CarDetailViewModel ShowCarFullInformation(int carId);
 
+        Task<HomeViewModel> GetVipAndTopCars();
 
         IList<CarsBg_System.Data.Models.Extra> GetChoicedExtras(IList<ExtrasViewModel> extras);
 

@@ -130,6 +130,21 @@ namespace CarsBg_System.Services.Car
                 })
                 .ToList();
 
+        public CarDetailViewModel ShowCarFullInformation(int carId)
+        => this.data.Cars
+                      .Where(x => x.Id == carId)
+                      .Select(x => new CarDetailViewModel()
+                      {
+                          Price = x.Price,
+                          Date = x.Date,
+                          EngineType = x.Engine.Name,
+                          Name = x.Name,
+                          Status = x.Status.StatusName,
+                          EnginePower = x.EnginePower,
+                          HorsePower = x.HorsePower
+                      })
+                      .FirstOrDefault();
+
 
         public IEnumerable<ModelViewModel> GetAllModelsByBrand(int brandId)
         {
