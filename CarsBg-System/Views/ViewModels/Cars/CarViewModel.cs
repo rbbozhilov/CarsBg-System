@@ -9,6 +9,8 @@
 
         public string EngineType { get; set; }
 
+        public int HorsePower { get; set; }
+
         public string Status { get; set; }
 
         public decimal Price { get; set; }

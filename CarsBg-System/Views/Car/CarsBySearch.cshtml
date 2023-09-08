@@ -2,42 +2,69 @@
 
 @{
     ViewData["Title"] = "Cars by search";
+    int counter = 2;
 }
 
-<div class="container pb-5 mt-n2 mt-md-n3">
-    <div class="row">
-        <div class="col-xl-9 col-md-8">
+@if (!Model.Any())
+{
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Don't have in the moment cars by this search</h1>
+            <p>
+                Please try soon!
+            </p>
+        </div>
+    </div>
+}
+else
+{
 
-            @if (!Model.Any())
-            {
-                <div class="container">
-                    <div class="jumbotron">
-                        <h1>Don't have in the moment cars by this search</h1>
-                        <p>
-                            Please try soon!
-                        </p>
-                    </div>
-                </div>
-            }
+
+
+    <div class="container">
+        <div class="row">
 
             @foreach (var car in Model)
             {
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><a asp-controller="Car" asp-action="ViewDetails" asp-route-id="@car.Id">@car.Name</a></h5>
+                @if (car.Status == "Vip")
+                {
+
+                    <div class="col-sm-4">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">VIP OFFER</div>
+                            <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+                            <div class="panel-body">@car.Name</div>
+                            <div class="panel-body">Horse Power: @car.HorsePower</div>
+                            <div class="panel-body">Engine: @car.EngineType</div>
+                            <div class="panel-body">Year: @car.Date.Year</div>
+                            <div class="panel-footer">Price: @String.Format(@car.Price % 1 == 0 ? "{0:0}" : "{0:0.00}", @car.Price) Lv</div>
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">@car.EngineType</li>
-                        <li class="list-group-item">@car.Price lv</li>
-                        <li class="list-group-item">@car.Date.Year</li>
-                        <li class="list-group-item">@car.Status</li>
-                    </ul>
-                </div>
-                <br />
+                }
+                else if (car.Status == "Top")
+                {
+                    <div class="col-sm-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                            <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+                            <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                            <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+                            <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+                        </div>
+                    </div>
+                }
             }
 
         </div>
     </div>
-</div>
-</div>
+    <br>
+}
+
