@@ -1,6 +1,5 @@
 ﻿using CarsBg_System.Areas.Admin.Views.ViewModels;
 using CarsBg_System.Data;
-using CarsBg_System.Data.Models;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
@@ -39,7 +38,7 @@ namespace CarsBg_System.Services.Car
                 UserId = userId
             };
 
-            var price = new Price()
+            var price = new CarsBg_System.Data.Models.Price()
             {
                 Money = carModel.Price,
                 Date = DateTime.UtcNow,
@@ -128,7 +127,7 @@ namespace CarsBg_System.Services.Car
 
             if(price != currentPrice)
             {
-                var newPrice = new Price()
+                var newPrice = new CarsBg_System.Data.Models.Price()
                 {
                     Date = DateTime.UtcNow,
                     Money = price,
@@ -209,7 +208,10 @@ namespace CarsBg_System.Services.Car
                           Name = x.Name,
                           Status = x.Status.StatusName,
                           EnginePower = x.EnginePower,
-                          HorsePower = x.HorsePower
+                          HorsePower = x.HorsePower,
+                          Id = x.Id,
+                          PricesChangeCount = x.Prices.Count()
+
                       })
                       .FirstOrDefault();
 

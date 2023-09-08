@@ -8,6 +8,7 @@ using CarsBg_System.Services.Engine;
 using CarsBg_System.Services.Extra;
 using CarsBg_System.Services.ImageData;
 using CarsBg_System.Services.Model;
+using CarsBg_System.Services.Price;
 using CarsBg_System.Services.Region;
 using CarsBg_System.Services.Status;
 using CarsBg_System.Services.Transmission;
@@ -46,6 +47,7 @@ builder.Services.AddTransient<IBrandService, BrandService>();
 builder.Services.AddTransient<IStatusService, StatusService>();
 builder.Services.AddTransient<IExtraService, ExtraService>();
 builder.Services.AddTransient<IImageService, ImageService>();
+builder.Services.AddTransient<IPriceService, PriceService>();
 
 var app = builder.Build();
 

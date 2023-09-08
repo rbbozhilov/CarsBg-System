@@ -1,13 +1,69 @@
-﻿@model CarDetailViewModel
+﻿@using CarsBg_System.Models.Api.Price
+@model CarDetailViewModel
 
 @{
     ViewData["Title"] = "Car Details";
 }
 
-
+<h1>@Model.Id</h1>
 <h1>@Model.Name</h1>
 <h1>@Model.Price</h1>
 <h1>@Model.HorsePower</h1>
 <h1>@Model.EnginePower</h1>
 <h1>@Model.Status</h1>
 <h1>@Model.Date.Year</h1>
+
+
+<div class="row">
+    <div class="col-sm-2">
+        <div class="panel panel-default text-left">
+            <div class="panel-body">
+                <p id="prices-p">Click here to show price change</p>
+
+                <div class="d-none" id="prices">
+
+                    <p id="date"></p>
+                    <p id="price"></p>
+
+                </div>
+
+                <button type="button" class="btn btn-primary" id="prices-button">
+                    Check
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+<script>
+    $('#prices-button').on('click', () => {
+        $.get('/api/prices/@Model.Id', (data) => {
+
+            if (data && data.prices && data.prices.length > 0) {
+                $('#prices-p').addClass('d-none');
+                $('#prices-button').addClass('d-none');
+
+
+                $('#prices').empty();
+
+
+                data.prices.forEach((price) => {
+                    $('#prices').append(`<p>Date: ${price.date}</p><p>Price: ${price.price}</p>`);
+                });
+
+                $('#prices').removeClass('d-none');
+                $('#prices-button').hide();
+            } else {
+
+                console.log('No data found');
+            }
+        });
+    });
+</script>
+}
+
+
+
+

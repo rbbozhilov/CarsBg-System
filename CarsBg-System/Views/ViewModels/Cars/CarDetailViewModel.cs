@@ -3,6 +3,8 @@
     public class CarDetailViewModel
     {
 
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string EngineType { get; set; }
@@ -16,5 +18,7 @@
         public decimal Price { get; set; }
 
         public DateTime Date { get; set; }
+
+        public int PricesChangeCount { get; set; }
     }
 }
