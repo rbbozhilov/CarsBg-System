@@ -198,7 +198,8 @@ namespace CarsBg_System.Services.Car
                     EngineType = x.Engine.Name,
                     Price = x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money,
                     Status = x.Status.StatusName,
-                    HorsePower = x.HorsePower
+                    HorsePower = x.HorsePower,
+                    ImageId = x.Images.FirstOrDefault().Id.ToString()
                 })
                 .ToList();
 
