@@ -1,7 +1,5 @@
-﻿using CarsBg_System.Views.ViewModels.Cars;
-using CarsBg_System.Views.ViewModels.Category;
+﻿using CarsBg_System.Views.ViewModels.Category;
 using CarsBg_System.Views.ViewModels.Engine;
-using CarsBg_System.Views.ViewModels.Extras;
 using CarsBg_System.Views.ViewModels.Region;
 using CarsBg_System.Views.ViewModels.Transmission;
 using CarsBg_System.Views.ViewModels.WheelDrive;
@@ -9,9 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CarsBg_System.Models.Car
 {
-    public class AddCarFormModel
+    public class EditCarFormModel
     {
-
         [Required]
         [MaxLength(200)]
         [MinLength(3)]
@@ -26,11 +23,11 @@ namespace CarsBg_System.Models.Car
         public int PhoneNumber { get; set; }
 
         [Required]
-        [Range(1,10000)]
+        [Range(1, 10000)]
         public int EnginePower { get; set; }
 
         [Required]
-        [Range(1,1500)]
+        [Range(1, 1500)]
         public int HorsePower { get; set; }
 
         [Required]
@@ -39,7 +36,7 @@ namespace CarsBg_System.Models.Car
         public string Color { get; set; }
 
         [Required]
-        [Range(1,5000000)]
+        [Range(1, 5000000)]
         public decimal Price { get; set; }
 
         [Required]
@@ -49,13 +46,6 @@ namespace CarsBg_System.Models.Car
         [Required]
         public DateTime Year { get; set; }
 
-        [Required]
-        public int BrandId { get; set; }
-        public IEnumerable<BrandViewModel>? Brands { get; set; }
-
-        [Required]
-        public int ModelId { get; set; }
-        public IEnumerable<ModelViewModel>? Models { get; set; }
 
         [Required]
         public int EngineId { get; set; }
@@ -76,8 +66,6 @@ namespace CarsBg_System.Models.Car
         [Required]
         public int WheelDriveId { get; set; }
         public IEnumerable<WheelDriveViewModel>? WheelDrives { get; set; }
-
-        public IList<ExtrasViewModel>? Extras { get; set; }
 
 
     }

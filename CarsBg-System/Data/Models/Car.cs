@@ -11,6 +11,7 @@ namespace CarsBg_System.Data.Models
             this.StatusId = 1;
             this.Extras = new HashSet<Extra>();
             this.Images = new HashSet<ImageData>();
+            this.Prices = new HashSet<Price>();
         }
 
         [Key]
@@ -27,6 +28,8 @@ namespace CarsBg_System.Data.Models
         [MaxLength(255)]
         public string Description { get; set; }
 
+        public int Mileage { get; set; }
+
         [Required]
         public int PhoneNumber { get; set; }
 
@@ -35,9 +38,6 @@ namespace CarsBg_System.Data.Models
 
         [Required]
         public int HorsePower { get; set; }
-
-        [Required]
-        public decimal Price { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -87,5 +87,7 @@ namespace CarsBg_System.Data.Models
         public virtual ICollection<Extra> Extras { get; set; }
 
         public virtual ICollection<ImageData> Images { get; set; }
+
+        public virtual ICollection<Price> Prices { get; set; }
     }
 }

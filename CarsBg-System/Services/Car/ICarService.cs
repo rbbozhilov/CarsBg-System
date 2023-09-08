@@ -16,6 +16,25 @@ namespace CarsBg_System.Services.Car
 
         bool IsHaveCar(int carId);
 
+        bool EditCar(
+                    int id,
+                    string name,
+                    string description,
+                    string color,
+                    int mileage,
+                    int enginePower,
+                    int horsePower,
+                    int phoneNumber,
+                    decimal price,
+                    DateTime year,
+                    int regionId,
+                    int transmissionId,
+                    int wheelDriveId,
+                    int engineId,
+                    int categoryId
+                    );
+
+
         CarsBg_System.Data.Models.Car GetCarById(int carId);
 
         int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);

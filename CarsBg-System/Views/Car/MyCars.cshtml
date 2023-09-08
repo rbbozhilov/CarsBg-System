@@ -10,6 +10,7 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Horse Power</th>
+            <th scope="col">Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
 
                 <td>@car.Name</td>
                 <td>@car.HorsePower</td>
+                <td><a asp-controller="Car" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-warning">Edit</a></td>
 
             </tr>
         }

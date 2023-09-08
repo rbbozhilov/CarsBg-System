@@ -36,9 +36,17 @@ namespace CarsBg_System.Services.Car
                 ModelId = carModel.ModelId,
                 PhoneNumber = carModel.PhoneNumber,
                 RegionId = carModel.RegionId,
-                Price = carModel.Price,
                 UserId = userId
             };
+
+            var price = new Price()
+            {
+                Money = carModel.Price,
+                Date = DateTime.UtcNow,
+                CarId = car.Id
+            };
+
+            car.Prices.Add(price);
 
             foreach (var item in extras)
             {
@@ -74,6 +82,66 @@ namespace CarsBg_System.Services.Car
             return true;
         }
 
+        public bool EditCar(
+                            int id,
+                            string name,
+                            string description,
+                            string color,
+                            int mileage,
+                            int enginePower,
+                            int horsePower,
+                            int phoneNumber,
+                            decimal price,
+                            DateTime year,
+                            int regionId,
+                            int transmissionId,
+                            int wheelDriveId,
+                            int engineId,
+                            int categoryId)
+        {
+
+            var currentCar = this.data.Cars
+                                         .Include(x => x.Prices)
+                                         .Where(c => c.Id == id && c.IsDeleted == false)
+                                         .FirstOrDefault();
+
+            if (currentCar == null)
+            {
+                return false;
+            }
+
+            currentCar.Name = name;
+            currentCar.Description = description;
+            currentCar.Color = color;
+            currentCar.Mileage = mileage;
+            currentCar.EnginePower = enginePower;
+            currentCar.HorsePower = horsePower;
+            currentCar.PhoneNumber = phoneNumber;
+            currentCar.TransmissionId = transmissionId;
+            currentCar.EngineId = engineId;
+            currentCar.CategoryId = categoryId;
+            currentCar.WheelDriveId = wheelDriveId;
+            currentCar.Date = year;
+            currentCar.RegionId = regionId;
+
+            var currentPrice = currentCar.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money;
+
+            if(price != currentPrice)
+            {
+                var newPrice = new Price()
+                {
+                    Date = DateTime.UtcNow,
+                    Money = price,
+                    CarId = id
+                };
+                currentCar.Prices.Add(newPrice);
+            }
+
+
+            this.data.SaveChanges();
+
+            return true;
+        }
 
         public bool Delete(int carId)
         {
@@ -91,7 +159,7 @@ namespace CarsBg_System.Services.Car
         }
 
         public CarsBg_System.Data.Models.Car GetCarById(int id)
-        => this.data.Cars.FirstOrDefault(x => x.Id == id);
+        => this.data.Cars.Include(x => x.Prices).FirstOrDefault(x => x.Id == id);
 
 
         public async Task<HomeViewModel> GetVipAndTopCars()
@@ -109,7 +177,7 @@ namespace CarsBg_System.Services.Car
                      {
                          Id = x.Id,
                          Name = x.Name,
-                         Price = x.Price
+                         Price = x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money
                      })
                     .ToList();
 
@@ -125,17 +193,17 @@ namespace CarsBg_System.Services.Car
                     Name = x.Name,
                     Date = x.Date,
                     EngineType = x.Engine.Name,
-                    Price = x.Price,
+                    Price = x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money,
                     Status = x.Status.StatusName
                 })
                 .ToList();
 
         public CarDetailViewModel ShowCarFullInformation(int carId)
         => this.data.Cars
-                      .Where(x => x.Id == carId)
+                      .Where(x => x.Id == carId && x.IsDeleted == false)
                       .Select(x => new CarDetailViewModel()
                       {
-                          Price = x.Price,
+                          Price = x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money,
                           Date = x.Date,
                           EngineType = x.Engine.Name,
                           Name = x.Name,
@@ -173,7 +241,7 @@ namespace CarsBg_System.Services.Car
         => query.Where(x => x.ModelId == modelId);
 
         public IQueryable<Data.Models.Car> GetCarsByPrice(decimal from, decimal to, IQueryable<Data.Models.Car> query)
-        => query.Where(x => x.Price >= from && x.Price <= to);
+        => query.Where(x => x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money >= from && x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money <= to);
 
         public IQueryable<Data.Models.Car> GetCarsByRegion(int regionId, IQueryable<Data.Models.Car> query)
         => query.Where(x => x.RegionId == regionId);
@@ -229,7 +297,7 @@ namespace CarsBg_System.Services.Car
         private async Task<List<TopCarsViewModel>> GetTopCars()
         => await this.data.Cars
                             .Where(x => x.IsDeleted == false && x.Status.StatusName == "Top")
-                            .OrderByDescending(x => x.Price)
+                            .OrderByDescending(x => x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money)
                             .Select(x => new TopCarsViewModel()
                             {
                                 CarId = x.Id,
@@ -244,7 +312,7 @@ namespace CarsBg_System.Services.Car
         private async Task<List<VipCarsViewModel>> GetVipCars()
         => await this.data.Cars
                             .Where(x => x.IsDeleted == false && x.Status.StatusName == "Vip")
-                            .OrderByDescending(x => x.Price)
+                            .OrderByDescending(x => x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money)
                             .Select(x => new VipCarsViewModel()
                             {
                                 CarId = x.Id,

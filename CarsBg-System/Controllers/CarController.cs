@@ -278,12 +278,76 @@ namespace CarsBg_System.Controllers
             return View(myCars);
         }
 
+        [Authorize]
+        public IActionResult EditCar(int id)
+        {
+
+            var currentCar = this.carService.GetCarById(id);
+
+            return View(new EditCarFormModel()
+            {
+                Color = currentCar.Color,
+                Name = currentCar.Name,
+                Mileage = currentCar.Mileage,
+                Description = currentCar.Description,
+                EnginePower = currentCar.EnginePower,
+                HorsePower = currentCar.HorsePower,
+                PhoneNumber = currentCar.PhoneNumber,
+                Price = currentCar.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money,
+                Year = currentCar.Date,
+                EngineId = currentCar.EngineId,
+                Engines = this.engineService.GetAllEngines(),
+                WheelDriveId = currentCar.WheelDriveId,
+                WheelDrives = this.wheelDriveService.GetAllWheelDrives(),
+                TransmissionId = currentCar.TransmissionId,
+                Transmissions = this.transmissionService.GetAllTransmissions(),
+                CategoryId = currentCar.CategoryId,
+                Categories = this.categoryService.GetAllCategories(),
+                RegionId = currentCar.RegionId,
+                Regions = this.regionService.GetAllRegions(),
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult EditCar(EditCarFormModel carModel, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(carModel);
+            }
+
+            var isEditted = this.carService.EditCar(
+                                      id,
+                                      carModel.Name,
+                                      carModel.Description,
+                                      carModel.Color,
+                                      carModel.Mileage,
+                                      carModel.EnginePower,
+                                      carModel.HorsePower,
+                                      carModel.PhoneNumber,
+                                      carModel.Price,
+                                      carModel.Year,
+                                      carModel.RegionId,
+                                      carModel.TransmissionId,
+                                      carModel.WheelDriveId,
+                                      carModel.EngineId,
+                                      carModel.CategoryId);
+            if (!isEditted)
+            {
+                return BadRequest();
+            }
+
+
+            return RedirectToAction(nameof(MyCars));
+        }
+
         public IActionResult ViewCar(int id)
         {
 
             var currentCar = this.carService.ShowCarFullInformation(id);
 
-            if(currentCar == null)
+            if (currentCar == null)
             {
                 return BadRequest();
             }
