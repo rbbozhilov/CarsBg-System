@@ -284,11 +284,7 @@ namespace CarsBg_System.Controllers
 
             var currentCar = this.carService.GetCarById(id);
 
-            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
-
-            bool isUserCar = this.carService.CheckCarOfUser(userId, id);
-
-            if (!isUserCar)
+            if (!this.CheckUserCar(id))
             {
                 return BadRequest();
             }
@@ -322,11 +318,7 @@ namespace CarsBg_System.Controllers
         public IActionResult EditCar(EditCarFormModel carModel, int id)
         {
 
-            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
-
-            bool isUserCar = this.carService.CheckCarOfUser(userId, id);
-
-            if (!isUserCar)
+            if (!this.CheckUserCar(id))
             {
                 return BadRequest();
             }
@@ -361,6 +353,24 @@ namespace CarsBg_System.Controllers
             return RedirectToAction(nameof(MyCars));
         }
 
+        public IActionResult DeleteCar(int id)
+        {
+
+            if (!this.CheckUserCar(id))
+            {
+                return BadRequest();
+            }
+
+            bool isDeleted = this.carService.Delete(id);
+
+            if (!isDeleted)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction(nameof(MyCars));
+        }
+
         public IActionResult ViewCar(int id)
         {
 
@@ -375,6 +385,20 @@ namespace CarsBg_System.Controllers
             return View(currentCar);
         }
 
+
+        private bool CheckUserCar(int id)
+        {
+            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
+
+            bool isUserCar = this.carService.CheckCarOfUser(userId, id);
+
+            if (!isUserCar)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
     }
 }

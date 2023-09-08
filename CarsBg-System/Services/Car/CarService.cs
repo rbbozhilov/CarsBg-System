@@ -290,7 +290,7 @@ namespace CarsBg_System.Services.Car
 
         public IEnumerable<MyCarsViewModel> GetMyCars(string userId)
         => this.data.Cars
-            .Where(x => x.UserId == userId)
+            .Where(x => x.UserId == userId && x.IsDeleted == false)
             .Select(x => new MyCarsViewModel()
             {
                 Id = x.Id,
