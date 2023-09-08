@@ -58,6 +58,10 @@ namespace CarsBg_System.Services.Car
             return car.Id;
         }
 
+        public bool CheckCarOfUser(string userId, int carId)
+        => this.data.Cars.Where(x => x.Id == carId).Any(u => u.UserId == userId);
+
+
         public bool IsHaveCar(int carId)
         => this.data.Cars.Any(x => x.Id == carId);
 
@@ -125,7 +129,7 @@ namespace CarsBg_System.Services.Car
 
             var currentPrice = currentCar.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money;
 
-            if(price != currentPrice)
+            if (price != currentPrice)
             {
                 var newPrice = new CarsBg_System.Data.Models.Price()
                 {

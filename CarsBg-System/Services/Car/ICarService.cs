@@ -16,6 +16,8 @@ namespace CarsBg_System.Services.Car
 
         bool IsHaveCar(int carId);
 
+        bool CheckCarOfUser(string userId, int carId);
+
         bool EditCar(
                     int id,
                     string name,

@@ -284,6 +284,15 @@ namespace CarsBg_System.Controllers
 
             var currentCar = this.carService.GetCarById(id);
 
+            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
+
+            bool isUserCar = this.carService.CheckCarOfUser(userId, id);
+
+            if (!isUserCar)
+            {
+                return BadRequest();
+            }
+
             return View(new EditCarFormModel()
             {
                 Color = currentCar.Color,
@@ -312,6 +321,16 @@ namespace CarsBg_System.Controllers
         [HttpPost]
         public IActionResult EditCar(EditCarFormModel carModel, int id)
         {
+
+            var userId = ClaimsPrincipalExtenssions.GetId(this.User);
+
+            bool isUserCar = this.carService.CheckCarOfUser(userId, id);
+
+            if (!isUserCar)
+            {
+                return BadRequest();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(carModel);
