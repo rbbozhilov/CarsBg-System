@@ -201,6 +201,8 @@ namespace CarsBg_System.Services.Car
                     HorsePower = x.HorsePower,
                     ImageId = x.Images.FirstOrDefault().Id.ToString()
                 })
+                .OrderByDescending(x => x.Status)
+                .ThenBy(x => x.Price)
                 .ToList();
 
         public CarDetailViewModel ShowCarFullInformation(int carId)
