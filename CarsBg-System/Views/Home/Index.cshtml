@@ -7,13 +7,16 @@
     int itemActive = 0;
 }
 
+
+
+
+
 @if (@Model.TopCarsImages.Any() || @Model.VipCarsImages.Any())
 {
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
                 <ol class="carousel-indicators">
                         @for (int i = 0; i < allCars; i++)
                         {
@@ -30,7 +33,6 @@
                         }
                     </ol>
 
-                    <!-- Wrapper for slides -->
 
                 <div class="carousel-inner" role="listbox">
 

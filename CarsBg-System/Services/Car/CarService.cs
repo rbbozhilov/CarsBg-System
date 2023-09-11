@@ -212,14 +212,23 @@ namespace CarsBg_System.Services.Car
                       {
                           Price = x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money,
                           Date = x.Date,
+                          Description = x.Description,
                           EngineType = x.Engine.Name,
                           Name = x.Name,
                           Status = x.Status.StatusName,
                           EnginePower = x.EnginePower,
                           HorsePower = x.HorsePower,
                           Id = x.Id,
-                          PricesChangeCount = x.Prices.Count(),
-                          ImagesId = x.Images.Select(i => i.Id.ToString()).ToList()
+                          ImagesId = x.Images.Select(i => i.Id.ToString()).ToList(),
+                          Category = x.Category.Name,
+                          Color = x.Color,
+                          Mileage = x.Mileage,
+                          Extras = x.Extras.Select(x => x.Name).ToList(),
+                          Model = x.Model.Name,
+                          PhoneNumber = x.PhoneNumber,
+                          Region = x.Region.Name,
+                          Transmission = x.Transmission.Name,
+                          WheelDrive = x.WheelDrive.Name
                       })
                       .FirstOrDefault();
 
