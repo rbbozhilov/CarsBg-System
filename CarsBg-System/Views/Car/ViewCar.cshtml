@@ -89,35 +89,67 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="well">
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
+
+                    <h1 style="background-color:powderblue;">Main information</h1>
+
+
+                    <p><h3 style="background-color:powderblue;">Engine capacity: </h3>@Model.EnginePower cubic cm</p>
+                    <p><h3 style="background-color:powderblue;">Engine type: </h3>@Model.EngineType</p>
+                    <p><h3 style="background-color:powderblue;">Horse power: </h3>@Model.HorsePower hp</p>
+                    @if (@Model.Mileage == 0)
+                    {
+                        <p><h3 style="background-color:powderblue;">Mileage: </h3>N/A</p>
+
+                    }
+                    else
+                    {
+                        <p><h3 style="background-color:powderblue;">Mileage: </h3>@Model.Mileage km</p>
+                    }
+                    <p><h3 style="background-color:powderblue;">Category: </h3>@Model.Category</p>
+                    <p><h3 style="background-color:powderblue;">Transmission: </h3>@Model.Transmission</p>
+                    <p><h3 style="background-color:powderblue;">Wheeldrive: </h3>@Model.WheelDrive</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="well">
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
+
+                    <h1 style="background-color:powderblue;">Contact and Offer</h1>
+
+                    <p><h3 style="background-color:powderblue;">Model: </h3>@Model.Model</p>
+                    <p><h3 style="background-color:powderblue;">Date: </h3>@Model.Date.ToString("dd-mm-yyyy")</p>
+                    <p><h3 style="background-color:powderblue;">Color: </h3>@Model.Color</p>
+                    <p><h3 style="background-color:powderblue;">Phone number: </h3>@Model.PhoneNumber</p>
+                    <p><h3 style="background-color:powderblue;">Region: </h3>@Model.Region</p>
+                    @if (@Model.Status == "Vip")
+                    {
+                        <p><h3 style="background-color:orangered;">Status: </h3>@Model.Status</p>
+                    }
+                    else if (@Model.Status == "Top")
+                    {
+                        <p><h3 style="background-color:lightgreen;">Status: </h3>@Model.Status</p>
+                    }
+                    else
+                    {
+                        <p><h3 style="background-color:powderblue;">Status: </h3>@Model.Status</p>
+                    }
+                    <p><h3 style="background-color:powderblue;">Price: </h3>@String.Format(@Model.Price % 1 == 0 ? "{0:0}" : "{0:0.00}", @Model.Price) Lv</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="well">
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
-                    <p>Some text..</p>
+                    <h1 style="background-color:powderblue;">Extras</h1>
+                    @if (@Model.Extras.Any())
+                    {
+                        @foreach (var extra in @Model.Extras)
+                        {
+                            <p><h4 style="background-color:powderblue;">- </h4>@extra</p>
+                        }
+                    }
+                    else
+                    {
+                        <p>Don't have any extras added for this car</p>
+                    }
+
                 </div>
             </div>
             <div class="col-sm-4">
@@ -168,6 +200,7 @@
 
                     $('#prices').removeClass('d-none');
                     $('#prices-button').hide();
+                    $('#prices-p').hide();
                 } else {
 
                     console.log('No data found');

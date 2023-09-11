@@ -25,7 +25,7 @@ namespace CarsBg_System.Data.Models
         [MaxLength(50)]
         public string Color { get; set; }
 
-        [MaxLength(255)]
+        [MaxLength(10000)]
         public string Description { get; set; }
 
         public int Mileage { get; set; }

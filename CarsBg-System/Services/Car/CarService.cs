@@ -35,7 +35,8 @@ namespace CarsBg_System.Services.Car
                 ModelId = carModel.ModelId,
                 PhoneNumber = carModel.PhoneNumber,
                 RegionId = carModel.RegionId,
-                UserId = userId
+                UserId = userId,
+                Mileage = carModel.Mileage
             };
 
             var price = new CarsBg_System.Data.Models.Price()

@@ -18,7 +18,7 @@ namespace CarsBg_System.Models.Car
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(10000)]
         [MinLength(3)]
         public string Description { get; set; }
 
