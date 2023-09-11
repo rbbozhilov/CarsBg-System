@@ -5,64 +5,174 @@
     ViewData["Title"] = "Car Details";
 }
 
-<h1>@Model.Id</h1>
-<h1>@Model.Name</h1>
-<h1>@Model.Price</h1>
-<h1>@Model.HorsePower</h1>
-<h1>@Model.EnginePower</h1>
-<h1>@Model.Status</h1>
-<h1>@Model.Date.Year</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+
+        .carousel-inner img {
+            width: 100%;
+            margin: auto;
+            min-height: 200px;
+        }
+
+        .carousel-caption {
+            display: none;
+        }
+
+        }
+    </style>
+</head>
+<body>
 
 
-<div class="row">
-    <div class="col-sm-2">
-        <div class="panel panel-default text-left">
-            <div class="panel-body">
-                <p id="prices-p">Click here to show price change</p>
 
-                <div class="d-none" id="prices">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
 
-                    <p id="date"></p>
-                    <p id="price"></p>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+                <div class="carousel-caption">
+                    <h3>Sell $</h3>
+                    <p>Money Money.</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+                <div class="carousel-caption">
+                    <h3>More Sell $</h3>
+                    <p>Lorem ipsum...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div class="container text-center">
+        <h3>What We Do</h3><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well">
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well">
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well">
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                    <p>Some text..</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default text-left">
+                    <div class="panel-body">
+                        <p id="prices-p">Click here to show price change</p>
+
+                        <div class="d-none" id="prices">
+
+                            <p id="date"></p>
+                            <p id="price"></p>
+
+                        </div>
+
+                        <button type="button" class="btn btn-primary" id="prices-button">
+                            Check
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="well">
+                    <h1>Description</h1>
+                    <p>Some text..Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.Some text.</p>
 
                 </div>
-
-                <button type="button" class="btn btn-primary" id="prices-button">
-                    Check
-                </button>
             </div>
         </div>
     </div>
-</div>
+    <br>
+
+    @section Scripts {
+    <script>
+        $('#prices-button').on('click', () => {
+            $.get('/api/prices/@Model.Id', (data) => {
+
+                if (data && data.prices && data.prices.length > 0) {
+                    $('#prices-p').addClass('d-none');
+                    $('#prices-button').addClass('d-none');
 
 
-@section Scripts {
-<script>
-    $('#prices-button').on('click', () => {
-        $.get('/api/prices/@Model.Id', (data) => {
-
-            if (data && data.prices && data.prices.length > 0) {
-                $('#prices-p').addClass('d-none');
-                $('#prices-button').addClass('d-none');
+                    $('#prices').empty();
 
 
-                $('#prices').empty();
+                    data.prices.forEach((price) => {
+                        $('#prices').append(`<p>Date: ${price.date}</p><p>Price: ${price.price}</p>`);
+                    });
 
+                    $('#prices').removeClass('d-none');
+                    $('#prices-button').hide();
+                } else {
 
-                data.prices.forEach((price) => {
-                    $('#prices').append(`<p>Date: ${price.date}</p><p>Price: ${price.price}</p>`);
-                });
-
-                $('#prices').removeClass('d-none');
-                $('#prices-button').hide();
-            } else {
-
-                console.log('No data found');
-            }
+                    console.log('No data found');
+                }
+            });
         });
-    });
-</script>
-}
+    </script>
+    }
+
+</body>
+</html>
+
+
+
+
+
+
+
 
 
 

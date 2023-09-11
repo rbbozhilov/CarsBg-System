@@ -33,6 +33,9 @@ namespace CarsBg_System.Services.ImageData
         public Task<Stream> GetSmallImage(string id)
         => this.GetImageData(id, "Small");
 
+        public Task<Stream> GetOriginalImage(string id)
+        => this.GetImageData(id, "Original");
+
         public async Task Process(IEnumerable<ImageInputModel> images, int carId)
         {
 

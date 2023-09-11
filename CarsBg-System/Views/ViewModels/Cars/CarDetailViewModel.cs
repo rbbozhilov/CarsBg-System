@@ -20,5 +20,7 @@
         public DateTime Date { get; set; }
 
         public int PricesChangeCount { get; set; }
+
+        public IEnumerable<string> ImagesId { get; set; }
     }
 }

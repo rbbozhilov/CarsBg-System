@@ -218,8 +218,8 @@ namespace CarsBg_System.Services.Car
                           EnginePower = x.EnginePower,
                           HorsePower = x.HorsePower,
                           Id = x.Id,
-                          PricesChangeCount = x.Prices.Count()
-
+                          PricesChangeCount = x.Prices.Count(),
+                          ImagesId = x.Images.Select(i => i.Id.ToString()).ToList()
                       })
                       .FirstOrDefault();
 

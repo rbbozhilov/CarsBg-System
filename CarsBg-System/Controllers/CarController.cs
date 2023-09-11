@@ -391,6 +391,11 @@ namespace CarsBg_System.Controllers
             return this.ReturnImage(await this.imageService.GetSmallImage(id));
         }
 
+        public async Task<IActionResult> OriginalImages(string id)
+        {
+            return this.ReturnImage(await this.imageService.GetOriginalImage(id));
+        }
+
 
         private bool CheckUserCar(int id)
         {

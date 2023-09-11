@@ -5,7 +5,7 @@ namespace CarsBg_System.Services.ImageData
     public interface IImageService
     {
 
-        Task Process(IEnumerable<ImageInputModel> images,int carId);
+        Task Process(IEnumerable<ImageInputModel> images, int carId);
 
         Task<List<string>> GetAllImages();
 
@@ -13,6 +13,7 @@ namespace CarsBg_System.Services.ImageData
 
         Task<Stream> GetSmallImage(string id);
 
+        Task<Stream> GetOriginalImage(string id);
 
     }
 }
