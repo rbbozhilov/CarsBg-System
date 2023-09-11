@@ -26,7 +26,7 @@ else
                 @if (car.Status == "Vip")
                 {
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div class="panel panel-danger">
                             <div class="panel-heading">VIP OFFER</div>
                             <div class="panel-body"><a asp-controller="Car" asp-action="ViewCar" asp-route-id="@car.Id"><img src="/Car/SmallImages/@car.ImageId" class="img-responsive" width="150" height="150"></a></div>
@@ -42,7 +42,7 @@ else
                 else if (car.Status == "Top")
                 {
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div class="panel panel-success">
                             <div class="panel-heading">TOP OFFER</div>
                             <div class="panel-body"><a asp-controller="Car" asp-action="ViewCar" asp-route-id="@car.Id"><img src="/Car/SmallImages/@car.ImageId" class="img-responsive" width="150" height="150"></a></div>
@@ -58,7 +58,7 @@ else
                 else
                 {
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div class="panel panel-primary">
                             <div class="panel-heading">OFFER</div>
                             <div class="panel-body"><a asp-controller="Car" asp-action="ViewCar" asp-route-id="@car.Id"><img src="/Car/SmallImages/@car.ImageId" class="img-responsive" width="150" height="150"></a></div>
