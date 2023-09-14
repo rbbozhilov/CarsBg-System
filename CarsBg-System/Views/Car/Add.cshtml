@@ -4,6 +4,8 @@
     ViewData["Title"] = "Add Car";
 }
 
+
+
 <form method="post" enctype="multipart/form-data">
     <div class="form-group">
         @Html.ValidationSummary(false, "", new { @class = "alert-danger"})
@@ -155,6 +157,7 @@
 
     <button asp-action="Add" class="btn btn-primary">Add</button>
 </form>
+
 
 @section Scripts {
 <partial name="_ValidationScriptsPartial" />
