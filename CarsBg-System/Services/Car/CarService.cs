@@ -229,7 +229,8 @@ namespace CarsBg_System.Services.Car
                           PhoneNumber = x.PhoneNumber,
                           Region = x.Region.Name,
                           Transmission = x.Transmission.Name,
-                          WheelDrive = x.WheelDrive.Name
+                          WheelDrive = x.WheelDrive.Name,
+                          Comments = x.Posts.Select(x => x.Comment).ToList()
                       })
                       .FirstOrDefault();
 

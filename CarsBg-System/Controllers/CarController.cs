@@ -1,12 +1,14 @@
 ﻿using CarsBg_System.Infrastructure;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Models.Image;
+using CarsBg_System.Models.Post;
 using CarsBg_System.Services.Brand;
 using CarsBg_System.Services.Car;
 using CarsBg_System.Services.Category;
 using CarsBg_System.Services.Engine;
 using CarsBg_System.Services.ImageData;
 using CarsBg_System.Services.Model;
+using CarsBg_System.Services.Post;
 using CarsBg_System.Services.Region;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
@@ -28,6 +30,7 @@ namespace CarsBg_System.Controllers
         private IBrandService brandService;
         private IModelService modelService;
         private IImageService imageService;
+        private IPostService postService;
 
 
         public CarController(
@@ -39,7 +42,8 @@ namespace CarsBg_System.Controllers
                               ITransmissionService transmissionService,
                               IBrandService brandService,
                               IModelService modelService,
-                              IImageService imageService)
+                              IImageService imageService,
+                              IPostService postService)
         {
             this.carService = carService;
             this.engineService = engineService;
@@ -50,6 +54,7 @@ namespace CarsBg_System.Controllers
             this.brandService = brandService;
             this.modelService = modelService;
             this.imageService = imageService;
+            this.postService = postService;
         }
 
 
@@ -384,6 +389,33 @@ namespace CarsBg_System.Controllers
 
 
             return View(currentCar);
+        }
+
+        [Authorize]
+        public IActionResult AddPostToCar()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddPostToCar(PostFormModel post,int id)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var addPost = this.postService.AddPost(id, post.Comment);
+
+            if (!addPost)
+            {
+                return BadRequest();
+            }
+
+
+            return RedirectToAction(nameof(ViewCar), new { Id = id });
         }
 
         public async Task<IActionResult> SmallImages(string id)

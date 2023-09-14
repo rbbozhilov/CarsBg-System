@@ -12,6 +12,7 @@ namespace CarsBg_System.Data.Models
             this.Extras = new HashSet<Extra>();
             this.Images = new HashSet<ImageData>();
             this.Prices = new HashSet<Price>();
+            this.Posts = new HashSet<Post>();
         }
 
         [Key]
@@ -89,5 +90,7 @@ namespace CarsBg_System.Data.Models
         public virtual ICollection<ImageData> Images { get; set; }
 
         public virtual ICollection<Price> Prices { get; set; }
+
+        public virtual ICollection<Post>? Posts { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿@model PostFormModel
+
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="Comment">Comment</label>
+        <textarea asp-for="Comment" type="text" class="form-control" rows="5" id="MessageInputField" autofocus></textarea>
+        <span asp-validation-for="Comment" class="small text-danger"> </span>
+    </div>
+
+
+    <button asp-action="AddPostToCar" class="btn btn-primary">Add</button>
+</form>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

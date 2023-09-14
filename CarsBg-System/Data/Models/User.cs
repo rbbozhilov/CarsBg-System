@@ -10,6 +10,6 @@ namespace CarsBg_System.Data.Models
             this.Cars = new HashSet<Car>();
         }
 
-        public ICollection<Car> Cars { get; set; }
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

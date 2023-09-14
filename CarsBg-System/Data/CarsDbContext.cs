@@ -36,5 +36,7 @@ namespace CarsBg_System.Data
 
         public virtual DbSet<Price> Prices { get; set; }
 
+        public virtual DbSet<Post> Posts { get; set; }
+
     }
 }

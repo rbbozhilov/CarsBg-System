@@ -39,5 +39,7 @@
         public IEnumerable<string> ImagesId { get; set; }
 
         public IEnumerable<string> Extras { get; set; }
+
+        public IEnumerable<string> Comments { get; set; }
     }
 }
