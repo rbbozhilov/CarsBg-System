@@ -185,9 +185,13 @@
                 @foreach (var comment in @Model.Comments)
                 {
                     <h3 style="background-color:orangered;">-</h3>
-                    <p>@comment   <a asp-controller="Car" asp-action="AddPostToCar" asp-route-id="@Model.Id" class="btn btn-primary">Add comment</a></p>
+                    <p>@comment</p>
+                    <a asp-controller="Car" asp-action="AddPostToCar" asp-route-id="@Model.Id" style="color:indianred;">Report</a>
                 }
 
+                <br />
+                <br />
+                <br />
                 <a asp-controller="Car" asp-action="AddPostToCar" asp-route-id="@Model.Id" class="btn btn-primary">Add comment</a>
             </div>
         </div>
