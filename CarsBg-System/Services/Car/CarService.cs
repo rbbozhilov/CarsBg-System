@@ -4,6 +4,7 @@ using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
 using CarsBg_System.Views.ViewModels.Home;
+using CarsBg_System.Views.ViewModels.Post;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarsBg_System.Services.Car
@@ -230,7 +231,14 @@ namespace CarsBg_System.Services.Car
                           Region = x.Region.Name,
                           Transmission = x.Transmission.Name,
                           WheelDrive = x.WheelDrive.Name,
-                          Comments = x.Posts.Select(x => x.Comment).ToList()
+                          Comments = x.Posts
+                                        .Select(p => new PostViewModel()
+                                        {
+                                            Id = p.Id,
+                                            Comment = p.Comment,
+                                            User = p.User
+                                        })
+                                        .ToList()
                       })
                       .FirstOrDefault();
 

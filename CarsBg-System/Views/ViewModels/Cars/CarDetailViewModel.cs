@@ -1,4 +1,6 @@
-﻿namespace CarsBg_System.Views.ViewModels.Cars
+﻿using CarsBg_System.Views.ViewModels.Post;
+
+namespace CarsBg_System.Views.ViewModels.Cars
 {
     public class CarDetailViewModel
     {
@@ -40,6 +42,6 @@
 
         public IEnumerable<string> Extras { get; set; }
 
-        public IEnumerable<string> Comments { get; set; }
+        public IEnumerable<PostViewModel> Comments { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Post;
 using CarsBg_System.Services.Price;
 using CarsBg_System.Services.Region;
+using CarsBg_System.Services.Report;
 using CarsBg_System.Services.Status;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
@@ -50,6 +51,7 @@ builder.Services.AddTransient<IExtraService, ExtraService>();
 builder.Services.AddTransient<IImageService, ImageService>();
 builder.Services.AddTransient<IPriceService, PriceService>();
 builder.Services.AddTransient<IPostService, PostService>();
+builder.Services.AddTransient<IReportService, ReportService>();
 
 var app = builder.Build();
 

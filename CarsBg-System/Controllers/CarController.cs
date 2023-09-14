@@ -10,6 +10,7 @@ using CarsBg_System.Services.ImageData;
 using CarsBg_System.Services.Model;
 using CarsBg_System.Services.Post;
 using CarsBg_System.Services.Region;
+using CarsBg_System.Services.Report;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,7 @@ namespace CarsBg_System.Controllers
         private IModelService modelService;
         private IImageService imageService;
         private IPostService postService;
+        private IReportService reportService;
 
 
         public CarController(
@@ -43,7 +45,8 @@ namespace CarsBg_System.Controllers
                               IBrandService brandService,
                               IModelService modelService,
                               IImageService imageService,
-                              IPostService postService)
+                              IPostService postService,
+                              IReportService reportService)
         {
             this.carService = carService;
             this.engineService = engineService;
@@ -55,6 +58,7 @@ namespace CarsBg_System.Controllers
             this.modelService = modelService;
             this.imageService = imageService;
             this.postService = postService;
+            this.reportService = reportService;
         }
 
 
@@ -407,7 +411,11 @@ namespace CarsBg_System.Controllers
                 return BadRequest();
             }
 
-            var addPost = this.postService.AddPost(id, post.Comment);
+            var userEmail = this.User.Identity.Name;
+            var getIndex = userEmail.IndexOf('@');
+            var userName = userEmail.Substring(0,getIndex);
+
+            var addPost = this.postService.AddPost(id, post.Comment,userName);
 
             if (!addPost)
             {
@@ -416,6 +424,25 @@ namespace CarsBg_System.Controllers
 
 
             return RedirectToAction(nameof(ViewCar), new { Id = id });
+        }
+
+        [Authorize]
+        public IActionResult AddReport(int id,int carId)
+        {
+
+            var isReported = this.reportService.AddReport(id, ClaimsPrincipalExtenssions.GetId(this.User));
+
+            if (!isReported)
+            {
+                return RedirectToAction(nameof(AlreadyReported));
+            }
+
+            return RedirectToAction(nameof(ViewCar), new { Id = carId });
+        }
+
+        public IActionResult AlreadyReported()
+        {
+            return View();
         }
 
         public async Task<IActionResult> SmallImages(string id)

@@ -38,5 +38,8 @@ namespace CarsBg_System.Data
 
         public virtual DbSet<Post> Posts { get; set; }
 
+        public virtual DbSet<Report> Reports { get; set; }
+
+
     }
 }

@@ -184,18 +184,17 @@
 
                 @if (@Model.Comments.Any())
                 {
-                     @foreach (var comment in @Model.Comments)
-                {
-                    <h3 style="background-color:orangered;">-</h3>
-                    <p>@comment</p>
-                    <a asp-controller="Car" asp-action="AddPostToCar" asp-route-id="@Model.Id" style="color:indianred;">Report this comment</a>
+                    @foreach (var currentComment in @Model.Comments)
+                    {
+                        <h3 style="background-color:orangered;">@currentComment.User</h3>
+                        <p>@currentComment.Comment</p>
+                        <a asp-controller="Car" asp-action="AddReport" asp-route-id="@currentComment.Id" asp-route-carId="@Model.Id" style="color:indianred;">Report this comment</a>
                     }
                 }
                 else
                 {
                     <p>Don't have any comments yet!</p>
                 }
-
                 <br />
                 <br />
                 <br />
