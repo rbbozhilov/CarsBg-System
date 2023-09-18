@@ -81,7 +81,7 @@ namespace CarsBg_System.Controllers
 
         public IActionResult Search([FromQuery] CarFormModel query)
         {
-
+            
             if (!this.brandService.IsHaveBrandById(query.BrandId))
             {
                 this.ModelState.AddModelError(nameof(query.BrandId), "Don't try stupid things!");

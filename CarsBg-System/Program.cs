@@ -16,6 +16,7 @@ using CarsBg_System.Services.Status;
 using CarsBg_System.Services.Transmission;
 using CarsBg_System.Services.WheelDrive;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,7 +37,10 @@ builder.Services.AddDefaultIdentity<User>(options =>
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<CarsDbContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+});
 
 builder.Services.AddTransient<ICarService, CarService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
