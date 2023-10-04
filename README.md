@@ -50,7 +50,7 @@ Administrator User
 ## :gear: Seeds
 
 ### 1. Brands
-It will seed authomatically bbrands  for cars (BMW,Audi...)
+It will seed authomatically brands  for cars (BMW,Audi...)
 
 ### 2. Categories
 Seeding categories for cars (sedan...)
