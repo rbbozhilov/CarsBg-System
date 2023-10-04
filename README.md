@@ -1,6 +1,6 @@
 # CarsBg-System
 
-The site is for selling cars. You can search for a car by criteria or upload a car for sell.
+The site is for selling cars. You can search for a car by criteria or upload a car for sale.
 
 ## :hammer_and_pick: Used Technologies and languages
 - C#
