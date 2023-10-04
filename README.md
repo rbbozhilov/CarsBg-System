@@ -43,7 +43,7 @@ Administrator User
     
     -Editting: car status(vip or top).
     
-    -Deleting: cars,models,extras,transmissions,wheeldrives,categories,regions,status
+    -Deleting: cars,models,extras,transmissions,wheeldrives,categories,regions,status.
     
   
 
