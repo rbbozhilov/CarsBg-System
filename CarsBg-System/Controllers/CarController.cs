@@ -363,6 +363,7 @@ namespace CarsBg_System.Controllers
             return RedirectToAction(nameof(MyCars));
         }
 
+        [Authorize]
         public IActionResult DeleteCar(int id)
         {
 
