@@ -2,12 +2,16 @@
 
 The site is for selling cars. You can search for a car by criteria or upload a car for sell.
 
-## :hammer_and_pick: Used Technologies
-
+## :hammer_and_pick: Used Technologies and languages
+- C#
 - ASP.NET Core
 - Entity Framework Core
 - MS SQL Server
+- JavaScript
 - jQuery
+- HTML & CSS
+- Bootstrap
+- Razor View Engine
 
 
 ## Using Web Api 
@@ -81,106 +85,93 @@ Moderator Role :
 
 
 
-## :framed_picture: Screenshot - Database Diagram
+## :framed_picture: Screenshot - Database Diagram with ASP identity
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/Database.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Database-ASP.jpg)
 
-## :framed_picture: Screenshot - Home page
+## :framed_picture: Screenshot - Database Diagram without identity
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/homePage1.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/homePage3.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/HomePage2.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/HomePage5.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/HomePage6.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/HomePagePhone.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Database-.jpg)
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/HomePagePhone2.jpg)
+## :framed_picture: Screenshot - Home page - Full Screen
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/FooterPhone.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Full-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Full-2.jpg)
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/MenuPhone.jpg)
+## :framed_picture: Screenshot - Home page - Responsive Screen
 
-## :framed_picture: Screenshot - Classes
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Responsive-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Responsive-2.jpg)
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/classPage1.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/MyClassesPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ClassesViewPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ClassesPhone.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ClassPage2.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ClassDetails.jpg)
+## :framed_picture: Screenshot - Search - Full Screen
 
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Search-Ful-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Search-Full-2.jpg)
 
-## :framed_picture: Screenshot - Exercise
+## :framed_picture: Screenshot - Search - Responsive Screen
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ExercisePage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ViewExercisePage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ExercisePhone.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Search-Responsive-1.jpg)
 
 
-## :framed_picture: Screenshot - Shop
+## :framed_picture: Screenshot - View from search
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ShopPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ShopPhone.jpg)
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ProductsPhone.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ViewProductsPage.jpg)
-
-
-## :framed_picture: Screenshot - Wish List
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/WishListPhone.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/WishListPage.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/SearchView-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/SearchView-2.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Searchview-3.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Searchview-4.jpg)
 
 
-## :framed_picture: Screenshot - Payment
+## :framed_picture: Screenshot - Car Details - Full Screen
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/PaymentPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/PaymentPhone.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-2.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-3.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-4.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-5.jpg)
 
+## :framed_picture: Screenshot - Car Details - Responsive Screen
 
-## :framed_picture: Screenshot - Trainers
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/TrainersPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/TrainersPhone.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ViewTrainersPage.jpg)
-
-
-## :framed_picture: Screenshot - Recipes
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/RecipePage.jpg)
-
-
-## :framed_picture: Screenshot - Contact
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ContactPage.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-2.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-3.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-4.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-5.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-6.jpg)
 
 
-## :framed_picture: Screenshot - Calculator
+## :framed_picture: Screenshot - User cars view - Full Screen
 
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/CalculatorPage.jpg)
-
-
-## :framed_picture: Screenshot - Admin Panel
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/AddExercisePage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/AddProductAdminPanelPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/AddProductPhone.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/AddRecipe.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/AddTrainerPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/AdminPanelPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/DeleteEditProductPage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/EditRemoveExercisePage.jpg)
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/EditRemoveRecipePage.jpg)
-
-## :framed_picture: Screenshot - Not Found 
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/NotFound.jpg)
-
-## :framed_picture: Screenshot - Bad Requests
-
-![alt text](https://github.com/rbbozhilov/LionSky-Project/blob/main/LionSky-Images/ElseErrorLikeBadRequestPage.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/MyCars-Full-1.jpg)
 
 
+## :framed_picture: Screenshot - User cars view - Responsive Screen
+
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/MyCars-Responsive-1.jpg)
+
+
+## :framed_picture: Screenshot - Add car - Full Screen
+
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-2.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-3.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-4.jpg)
+
+
+## :framed_picture: Screenshot - Edit car - Responsive Screen
+
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/EditCar-Responsive-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/EditCar-Responsive-2.jpg)
+
+
+## :framed_picture: Screenshot - Administrator Panel
+
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-1.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-2.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-3.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-4.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-5.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-6.jpg)
+![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-7.jpg)
 
 
 ## License
