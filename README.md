@@ -96,16 +96,19 @@ Moderator Role :
 ## :framed_picture: Screenshot - Home page - Full Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Full-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Full-2.jpg)
 
 ## :framed_picture: Screenshot - Home page - Responsive Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Responsive-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/HomePage-Responsive-2.jpg)
 
 ## :framed_picture: Screenshot - Search - Full Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Search-Ful-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Search-Full-2.jpg)
 
 ## :framed_picture: Screenshot - Search - Responsive Screen
@@ -116,26 +119,38 @@ Moderator Role :
 ## :framed_picture: Screenshot - View from search
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/SearchView-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/SearchView-2.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Searchview-3.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/Searchview-4.jpg)
 
 
 ## :framed_picture: Screenshot - Car Details - Full Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-2.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-3.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-4.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Full-5.jpg)
 
 ## :framed_picture: Screenshot - Car Details - Responsive Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-2.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-3.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-4.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-5.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/InsideCar-Responsive-6.jpg)
 
 
@@ -152,25 +167,35 @@ Moderator Role :
 ## :framed_picture: Screenshot - Add car - Full Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-2.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-3.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AddCar-Full-4.jpg)
 
 
 ## :framed_picture: Screenshot - Edit car - Responsive Screen
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/EditCar-Responsive-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/EditCar-Responsive-2.jpg)
 
 
 ## :framed_picture: Screenshot - Administrator Panel
 
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-1.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-2.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-3.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-4.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-5.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-6.jpg)
+
 ![alt text](https://github.com/rbbozhilov/CarsBg-System/blob/main/CarsBg-Images/AdminPanel-7.jpg)
 
 
