@@ -6,9 +6,9 @@ namespace CarsBg_System.Services.Status
     public interface IStatusService
     {
 
-        bool Add(StatusFormModel status);
+        Task<bool> AddAsync(StatusFormModel status);
 
-        bool Delete(int statusId);
+        Task<bool> DeleteAsync(int statusId);
 
         IEnumerable<ShowStatusViewModel> ShowStatuses();
 

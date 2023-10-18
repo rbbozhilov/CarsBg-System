@@ -6,9 +6,9 @@ namespace CarsBg_System.Services.Brand
     public interface IBrandService
     {
 
-        bool Delete(int brandId);
+        Task<bool> DeleteAsync(int brandId);
 
-        bool Add(BrandFormModel brand);
+        Task<bool> AddAsync(BrandFormModel brand);
 
         bool IsHaveBrandById(int id);
 

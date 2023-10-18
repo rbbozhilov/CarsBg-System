@@ -7,9 +7,9 @@ namespace CarsBg_System.Services.Region
     public interface IRegionService
     {
 
-        bool Add(RegionFormModel region);
+        Task<bool> AddAsync(RegionFormModel region);
 
-        bool Delete(int regionId);
+        Task<bool> DeleteAsync(int regionId);
 
         bool IsHaveRegionById(int id);
 

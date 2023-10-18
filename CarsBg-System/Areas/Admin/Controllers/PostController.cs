@@ -28,9 +28,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult DeletePost(int id)
+        public async Task<IActionResult> DeletePost(int id)
         {
-            bool isDeleted = this.postService.DeletePost(id);
+            bool isDeleted = await this.postService.DeletePostAsync(id);
 
             if (!isDeleted)
             {
@@ -40,9 +40,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
             return RedirectToAction(nameof(ShowReport));
         }
 
-        public IActionResult ClearReports(int id)
+        public async Task<IActionResult> ClearReports(int id)
         {
-           bool isClear =  this.reportService.ClearReports(id);
+            bool isClear = await this.reportService.ClearReportsAsync(id);
 
             if (!isClear)
             {

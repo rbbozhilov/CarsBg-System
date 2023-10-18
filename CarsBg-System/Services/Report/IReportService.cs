@@ -5,9 +5,9 @@ namespace CarsBg_System.Services.Report
     public interface IReportService
     {
 
-        bool AddReport(int postId, string userId);
+        Task<bool> AddReportAsync(int postId, string userId);
 
-        bool ClearReports(int postId);
+        Task<bool> ClearReportsAsync(int postId);
 
         IEnumerable<ShowReportViewModel> ShowAllReports();
 

@@ -24,14 +24,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddStatus(StatusFormModel statusModel)
+        public async Task<IActionResult> AddStatus(StatusFormModel statusModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(statusModel);
             }
 
-            bool isDone = this.statusService.Add(statusModel);
+            bool isDone = await this.statusService.AddAsync(statusModel);
 
             if (!isDone)
             {
@@ -50,9 +50,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            bool isDeleted = this.statusService.Delete(id);
+            bool isDeleted = await this.statusService.DeleteAsync(id);
 
             if (!isDeleted)
             {

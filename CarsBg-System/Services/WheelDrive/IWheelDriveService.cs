@@ -7,9 +7,9 @@ namespace CarsBg_System.Services.WheelDrive
     public interface IWheelDriveService
     {
 
-        bool Add(WheelDriveFormModel wheelDrive);
+        Task<bool> AddAsync(WheelDriveFormModel wheelDrive);
 
-        bool Delete(int wheelDriveId);
+        Task<bool> DeleteAsync(int wheelDriveId);
 
         bool IsHaveWheelDriveById(int id);
 

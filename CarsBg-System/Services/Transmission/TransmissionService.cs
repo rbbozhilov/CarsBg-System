@@ -14,7 +14,7 @@ namespace CarsBg_System.Services.Transmission
             this.data = data;
         }
 
-        public bool Add(TransmissionFormModel transmission)
+        public async Task<bool> AddAsync(TransmissionFormModel transmission)
         {
             bool isHave = this.data.Transmissions.Any(x => x.Name == transmission.Name);
 
@@ -25,13 +25,13 @@ namespace CarsBg_System.Services.Transmission
 
             var currentTransmission = new CarsBg_System.Data.Models.Transmission() { Name = transmission.Name };
 
-            this.data.Transmissions.Add(currentTransmission);
-            this.data.SaveChanges();
+            await this.data.Transmissions.AddAsync(currentTransmission);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int transmissionId)
+        public async Task<bool> DeleteAsync(int transmissionId)
         {
             var transmission = this.data.Transmissions.Where(x => x.Id == transmissionId).FirstOrDefault();
 
@@ -41,7 +41,7 @@ namespace CarsBg_System.Services.Transmission
             }
 
             transmission.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

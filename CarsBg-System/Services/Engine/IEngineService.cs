@@ -7,15 +7,15 @@ namespace CarsBg_System.Services.Engine
     public interface IEngineService
     {
 
-        public bool Add(EngineFormModel engine);
+        Task<bool> AddAsync(EngineFormModel engine);
 
-        public bool Delete(int engineId);
+        Task<bool> DeleteAsync(int engineId);
 
         bool IsHaveEngineById(int id);
 
         IEnumerable<EngineViewModel> GetAllEngines();
 
-        public IEnumerable<ShowEngineViewModel> ShowEngines();
+        IEnumerable<ShowEngineViewModel> ShowEngines();
 
     }
 }

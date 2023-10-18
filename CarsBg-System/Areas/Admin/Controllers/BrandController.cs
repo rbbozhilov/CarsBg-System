@@ -24,14 +24,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBrand(BrandFormModel brandModel)
+        public async Task<IActionResult> AddBrand(BrandFormModel brandModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(brandModel);
             }
 
-            bool isDone = this.brandService.Add(brandModel);
+            bool isDone = await this.brandService.AddAsync(brandModel);
 
             if (!isDone)
             {
@@ -50,9 +50,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            bool isDeleted = this.brandService.Delete(id);
+            bool isDeleted = await this.brandService.DeleteAsync(id);
 
             if (!isDeleted)
             {

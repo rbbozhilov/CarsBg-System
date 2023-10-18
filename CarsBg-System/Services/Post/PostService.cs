@@ -12,7 +12,7 @@ namespace CarsBg_System.Services.Post
             this.data = data;
         }
 
-        public bool AddPost(int carId, string description,string userName)
+        public async Task<bool> AddPostAsync(int carId, string description, string userName)
         {
             var currentCar = this.data.Cars.Where(x => x.Id == carId && x.IsDeleted == false).FirstOrDefault();
 
@@ -25,12 +25,12 @@ namespace CarsBg_System.Services.Post
 
             currentCar.Posts.Add(newPost);
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool DeletePost(int postId)
+        public async Task<bool> DeletePostAsync(int postId)
         {
             var post = this.data.Posts.Where(x => x.Id == postId).FirstOrDefault();
 
@@ -41,7 +41,7 @@ namespace CarsBg_System.Services.Post
 
             this.data.Posts.Remove(post);
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

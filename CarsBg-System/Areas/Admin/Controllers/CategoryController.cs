@@ -25,14 +25,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCategory(CategoryFormModel categoryModel)
+        public async Task<IActionResult> AddCategory(CategoryFormModel categoryModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(categoryModel);
             }
 
-            bool isDone = this.categoryService.Add(categoryModel);
+            bool isDone = await this.categoryService.AddAsync(categoryModel);
 
             if (!isDone)
             {
@@ -51,9 +51,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            bool isDeleted = this.categoryService.Delete(id);
+            bool isDeleted = await this.categoryService.DeleteAsync(id);
 
             if (!isDeleted)
             {

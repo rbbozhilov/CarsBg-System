@@ -15,7 +15,7 @@ namespace CarsBg_System.Services.Category
             this.data = data;
         }
 
-        public bool Add(CategoryFormModel category)
+        public async Task<bool> AddAsync(CategoryFormModel category)
         {
             bool isHave = this.data.Categories.Any(x => x.Name == category.Name);
 
@@ -26,13 +26,13 @@ namespace CarsBg_System.Services.Category
 
             var currentCategory = new CarsBg_System.Data.Models.Category() { Name = category.Name };
 
-            this.data.Categories.Add(currentCategory);
-            this.data.SaveChanges();
+            await this.data.Categories.AddAsync(currentCategory);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int categoryId)
+        public async Task<bool> DeleteAsync(int categoryId)
         {
             var category = this.data.Categories.Where(x => x.Id == categoryId).FirstOrDefault();
 
@@ -42,7 +42,7 @@ namespace CarsBg_System.Services.Category
             }
 
             category.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

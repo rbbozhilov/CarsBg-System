@@ -23,7 +23,7 @@ namespace CarsBg_System.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var cars = await this.carService.GetVipAndTopCars();
+            var cars = await this.carService.GetVipAndTopCarsAsync();
 
             return View(cars);
         }

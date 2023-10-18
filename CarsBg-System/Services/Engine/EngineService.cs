@@ -15,7 +15,7 @@ namespace CarsBg_System.Services.Engine
             this.data = data;
         }
 
-        public bool Add(EngineFormModel engine)
+        public async Task<bool> AddAsync(EngineFormModel engine)
         {
             bool isHave = this.data.Engines.Any(x => x.Name == engine.Name);
 
@@ -26,13 +26,13 @@ namespace CarsBg_System.Services.Engine
 
             var currentEngine = new CarsBg_System.Data.Models.Engine() { Name = engine.Name };
 
-            this.data.Engines.Add(currentEngine);
-            this.data.SaveChanges();
+            await this.data.Engines.AddAsync(currentEngine);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int engineId)
+        public async Task<bool> DeleteAsync(int engineId)
         {
             var engine = this.data.Engines.Where(x => x.Id == engineId).FirstOrDefault();
 
@@ -42,7 +42,7 @@ namespace CarsBg_System.Services.Engine
             }
 
             engine.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

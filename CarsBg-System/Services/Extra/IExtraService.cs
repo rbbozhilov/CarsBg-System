@@ -6,9 +6,9 @@ namespace CarsBg_System.Services.Extra
     public interface IExtraService
     {
 
-        bool Add(ExtraFormModel extra);
+        Task<bool> AddAsync(ExtraFormModel extra);
 
-        bool Delete(int extraId);
+        Task<bool> DeleteAsync(int extraId);
 
         IEnumerable<ShowExtraViewModel> ShowExtras();
 

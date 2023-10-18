@@ -46,12 +46,12 @@ namespace CarsBg_System.Areas.Admin.Controllers
             this.statusService = statusService;
         }
 
-        public IActionResult ShowCar()
+        public async Task<IActionResult> ShowCar()
         {
-            var cars = this.carService.ShowCarsForAdmin();
+            var cars = await this.carService.ShowCarsForAdminAsync();
 
             return View(cars);
-            
+
         }
 
         public IActionResult EditCar()
@@ -63,10 +63,10 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditCar(CarFormModel carModel,int id)
+        public async Task<IActionResult> EditCar(CarFormModel carModel, int id)
         {
 
-            bool isChanged = this.carService.ChangeStatus(carModel.StatusId,id);
+            bool isChanged = await this.carService.ChangeStatusAsync(carModel.StatusId, id);
 
             if (!isChanged)
             {
@@ -76,9 +76,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
             return RedirectToAction(nameof(ShowCar));
         }
 
-        public IActionResult DeleteCar(int id)
+        public async Task<IActionResult> DeleteCar(int id)
         {
-            bool isDeleted = this.carService.Delete(id);
+            bool isDeleted = await this.carService.DeleteAsync(id);
 
             if (!isDeleted)
             {
@@ -95,14 +95,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddEngine(EngineFormModel engineModel)
+        public async Task<IActionResult> AddEngine(EngineFormModel engineModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(engineModel);
             }
 
-            bool isDone = this.engineService.Add(engineModel);
+            bool isDone = await this.engineService.AddAsync(engineModel);
 
             if (!isDone)
             {
@@ -121,9 +121,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult DeleteEngine(int id)
+        public async Task<IActionResult> DeleteEngine(int id)
         {
-            bool isDeleted = this.engineService.Delete(id);
+            bool isDeleted = await this.engineService.DeleteAsync(id);
 
             if (!isDeleted)
             {
@@ -143,14 +143,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddModel(ModelFormModel formModel)
+        public async Task<IActionResult> AddModel(ModelFormModel formModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(formModel);
             }
 
-            bool isDone = this.modelService.Add(formModel);
+            bool isDone = await this.modelService.AddAsync(formModel);
 
             if (!isDone)
             {
@@ -169,9 +169,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult DeleteModel(int id)
+        public async Task<IActionResult> DeleteModel(int id)
         {
-            bool isDeleted = this.modelService.Delete(id);
+            bool isDeleted = await this.modelService.DeleteAsync(id);
 
             if (!isDeleted)
             {
@@ -187,14 +187,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddWheelDrive(WheelDriveFormModel wheelDriveModel)
+        public async Task<IActionResult> AddWheelDrive(WheelDriveFormModel wheelDriveModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(wheelDriveModel);
             }
 
-            bool isDone = this.wheelDriveService.Add(wheelDriveModel);
+            bool isDone = await this.wheelDriveService.AddAsync(wheelDriveModel);
 
             if (!isDone)
             {
@@ -213,9 +213,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult DeleteWheelDrive(int id)
+        public async Task<IActionResult> DeleteWheelDrive(int id)
         {
-            bool isDeleted = this.wheelDriveService.Delete(id);
+            bool isDeleted = await this.wheelDriveService.DeleteAsync(id);
 
             if (!isDeleted)
             {
@@ -231,14 +231,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTransmission(TransmissionFormModel transmissionModel)
+        public async Task<IActionResult> AddTransmission(TransmissionFormModel transmissionModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(transmissionModel);
             }
 
-            bool isDone = this.transmissionService.Add(transmissionModel);
+            bool isDone = await this.transmissionService.AddAsync(transmissionModel);
 
             if (!isDone)
             {
@@ -257,9 +257,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult DeleteTransmission(int id)
+        public async Task<IActionResult> DeleteTransmission(int id)
         {
-            bool isDeleted = this.transmissionService.Delete(id);
+            bool isDeleted = await this.transmissionService.DeleteAsync(id);
 
             if (!isDeleted)
             {
@@ -275,14 +275,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddExtra(ExtraFormModel extraModel)
+        public async Task<IActionResult> AddExtra(ExtraFormModel extraModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(extraModel);
             }
 
-            bool isDone = this.extraService.Add(extraModel);
+            bool isDone = await this.extraService.AddAsync(extraModel);
 
             if (!isDone)
             {
@@ -301,9 +301,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult DeleteExtra(int id)
+        public async Task<IActionResult> DeleteExtra(int id)
         {
-            bool isDeleted = this.extraService.Delete(id);
+            bool isDeleted = await this.extraService.DeleteAsync(id);
 
             if (!isDeleted)
             {

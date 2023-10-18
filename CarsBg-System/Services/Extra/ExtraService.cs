@@ -15,7 +15,7 @@ namespace CarsBg_System.Services.Extra
         }
 
 
-        public bool Add(ExtraFormModel extra)
+        public async Task<bool> AddAsync(ExtraFormModel extra)
         {
             bool isHave = this.data.Extras.Any(x => x.Name == extra.Name);
 
@@ -26,13 +26,13 @@ namespace CarsBg_System.Services.Extra
 
             var currentExtra = new CarsBg_System.Data.Models.Extra() { Name = extra.Name };
 
-            this.data.Extras.Add(currentExtra);
-            this.data.SaveChanges();
+            await this.data.Extras.AddAsync(currentExtra);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int extraId)
+        public async Task<bool> DeleteAsync(int extraId)
         {
             var extra = this.data.Extras.Where(x => x.Id == extraId).FirstOrDefault();
 
@@ -42,7 +42,7 @@ namespace CarsBg_System.Services.Extra
             }
 
             this.data.Extras.Remove(extra);
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

@@ -16,7 +16,7 @@ namespace CarsBg_System.Services.WheelDrive
         }
 
 
-        public bool Add(WheelDriveFormModel wheelDrive)
+        public async Task<bool> AddAsync(WheelDriveFormModel wheelDrive)
         {
             bool isHave = this.data.WheelDrives.Any(x => x.Name == wheelDrive.Name);
 
@@ -27,13 +27,13 @@ namespace CarsBg_System.Services.WheelDrive
 
             var currentWheelDrive = new CarsBg_System.Data.Models.WheelDrive() { Name = wheelDrive.Name };
 
-            this.data.WheelDrives.Add(currentWheelDrive);
-            this.data.SaveChanges();
+            await this.data.WheelDrives.AddAsync(currentWheelDrive);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int wheelDriveId)
+        public async Task<bool> DeleteAsync(int wheelDriveId)
         {
             var wheelDrive = this.data.WheelDrives.Where(x => x.Id == wheelDriveId).FirstOrDefault();
 
@@ -43,7 +43,7 @@ namespace CarsBg_System.Services.WheelDrive
             }
 
             this.data.WheelDrives.Remove(wheelDrive);
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

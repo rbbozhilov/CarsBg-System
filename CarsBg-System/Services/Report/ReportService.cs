@@ -14,9 +14,9 @@ namespace CarsBg_System.Services.Report
             this.data = data;
         }
 
-        public bool AddReport(int postId, string userId)
+        public async Task<bool> AddReportAsync(int postId, string userId)
         {
-            var post = this.data.Posts.Include(x => x.Reports).Where(x => x.Id == postId).FirstOrDefault();
+            var post = await this.data.Posts.Include(x => x.Reports).Where(x => x.Id == postId).FirstOrDefaultAsync();
 
             if (post == null || post.Reports.Any(x => x.User == userId))
             {
@@ -25,7 +25,7 @@ namespace CarsBg_System.Services.Report
 
             post.Reports.Add(new CarsBg_System.Data.Models.Report() { User = userId });
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }
@@ -43,18 +43,18 @@ namespace CarsBg_System.Services.Report
                         })
                         .ToList();
 
-        public bool ClearReports(int postId)
+        public async Task<bool> ClearReportsAsync(int postId)
         {
             var post = this.data.Posts.Include(x => x.Reports).Where(x => x.Id == postId).FirstOrDefault();
 
-            if(post == null)
+            if (post == null)
             {
                 return false;
             }
 
             post.Reports.Clear();
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

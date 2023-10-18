@@ -14,7 +14,7 @@ namespace CarsBg_System.Services.Brand
             this.data = data;
         }
 
-        public bool Add(BrandFormModel brand)
+        public async Task<bool> AddAsync(BrandFormModel brand)
         {
             bool isHave = this.data.Brands.Any(x => x.Name == brand.Name);
 
@@ -25,13 +25,13 @@ namespace CarsBg_System.Services.Brand
 
             var currentBrand = new CarsBg_System.Data.Models.Brand() { Name = brand.Name };
 
-            this.data.Brands.Add(currentBrand);
-            this.data.SaveChanges();
+            await this.data.Brands.AddAsync(currentBrand);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int brandId)
+        public async Task<bool> DeleteAsync(int brandId)
         {
             var brand = this.data.Brands.Where(x => x.Id == brandId).FirstOrDefault();
 
@@ -41,7 +41,7 @@ namespace CarsBg_System.Services.Brand
             }
 
             brand.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

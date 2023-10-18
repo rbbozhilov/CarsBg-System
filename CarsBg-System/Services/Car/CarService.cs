@@ -19,7 +19,7 @@ namespace CarsBg_System.Services.Car
             this.data = data;
         }
 
-        public int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras)
+        public async Task<int> AddCarAsync(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras)
         {
             var car = new CarsBg_System.Data.Models.Car()
             {
@@ -54,8 +54,8 @@ namespace CarsBg_System.Services.Car
                 car.Extras.Add(item);
             }
 
-            this.data.Cars.Add(car);
-            this.data.SaveChanges();
+            await this.data.Cars.AddAsync(car);
+            await this.data.SaveChangesAsync();
 
             return car.Id;
         }
@@ -68,7 +68,7 @@ namespace CarsBg_System.Services.Car
         => this.data.Cars.Any(x => x.Id == carId);
 
 
-        public bool ChangeStatus(int statusId, int carId)
+        public async Task<bool> ChangeStatusAsync(int statusId, int carId)
         {
             var status = this.data.Statuses.Any(x => x.Id == statusId);
 
@@ -78,16 +78,16 @@ namespace CarsBg_System.Services.Car
                 return false;
             }
 
-            var car = this.GetCarById(carId);
+            var car = await this.GetCarByIdAsync(carId);
 
             car.StatusId = statusId;
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool EditCar(
+        public async Task<bool> EditCarAsync(
                             int id,
                             string name,
                             string description,
@@ -105,10 +105,10 @@ namespace CarsBg_System.Services.Car
                             int categoryId)
         {
 
-            var currentCar = this.data.Cars
+            var currentCar = await this.data.Cars
                                          .Include(x => x.Prices)
                                          .Where(c => c.Id == id && c.IsDeleted == false)
-                                         .FirstOrDefault();
+                                         .FirstOrDefaultAsync();
 
             if (currentCar == null)
             {
@@ -143,14 +143,14 @@ namespace CarsBg_System.Services.Car
             }
 
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int carId)
+        public async Task<bool> DeleteAsync(int carId)
         {
-            var car = this.data.Cars.Where(x => x.Id == carId).FirstOrDefault();
+            var car = await this.data.Cars.Where(x => x.Id == carId).FirstOrDefaultAsync();
 
             if (car == null || car.IsDeleted == true)
             {
@@ -158,25 +158,25 @@ namespace CarsBg_System.Services.Car
             }
 
             car.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public CarsBg_System.Data.Models.Car GetCarById(int id)
-        => this.data.Cars.Include(x => x.Prices).FirstOrDefault(x => x.Id == id);
+        public async Task<CarsBg_System.Data.Models.Car> GetCarByIdAsync(int id)
+        => await this.data.Cars.Include(x => x.Prices).FirstOrDefaultAsync(x => x.Id == id);
 
 
-        public async Task<HomeViewModel> GetVipAndTopCars()
+        public async Task<HomeViewModel> GetVipAndTopCarsAsync()
         => new HomeViewModel()
         {
-            TopCarsImages = await this.GetTopCars(),
-            VipCarsImages = await this.GetVipCars()
+            TopCarsImages = await this.GetTopCarsAsync(),
+            VipCarsImages = await this.GetVipCarsAsync()
         };
 
 
-        public IEnumerable<ShowCarViewModel> ShowCarsForAdmin()
-        => this.data.Cars
+        public async Task<IEnumerable<ShowCarViewModel>> ShowCarsForAdminAsync()
+        => await this.data.Cars
                      .Where(x => x.IsDeleted == false)
                      .Select(x => new ShowCarViewModel()
                      {
@@ -184,14 +184,14 @@ namespace CarsBg_System.Services.Car
                          Name = x.Name,
                          Price = x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money
                      })
-                    .ToList();
+                    .ToListAsync();
 
 
         public IEnumerable<BrandViewModel> GetAllBrands()
         => data.Brands.Select(x => new BrandViewModel() { Id = x.Id, Name = x.Name });
 
-        public IEnumerable<CarViewModel> GetAllCarsBySearch(IQueryable<Data.Models.Car> query)
-        => query.Where(x => x.IsDeleted == false)
+        public async Task<IEnumerable<CarViewModel>> GetAllCarsBySearchAsync(IQueryable<Data.Models.Car> query)
+        => await query.Where(x => x.IsDeleted == false)
                 .Select(x => new CarViewModel()
                 {
                     Id = x.Id,
@@ -205,10 +205,10 @@ namespace CarsBg_System.Services.Car
                 })
                 .OrderByDescending(x => x.Status)
                 .ThenBy(x => x.Price)
-                .ToList();
+                .ToListAsync();
 
-        public CarDetailViewModel ShowCarFullInformation(int carId)
-        => this.data.Cars
+        public async Task<CarDetailViewModel> ShowCarFullInformationAsync(int carId)
+        => await this.data.Cars
                       .Where(x => x.Id == carId && x.IsDeleted == false)
                       .Select(x => new CarDetailViewModel()
                       {
@@ -240,19 +240,15 @@ namespace CarsBg_System.Services.Car
                                         })
                                         .ToList()
                       })
-                      .FirstOrDefault();
+                      .FirstOrDefaultAsync();
 
 
-        public IEnumerable<ModelViewModel> GetAllModelsByBrand(int brandId)
-        {
+        public async Task<IEnumerable<ModelViewModel>> GetAllModelsByBrandAsync(int brandId)
+        => await this.data.Models
+                            .Where(x => x.BrandId == brandId)
+                            .Select(x => new ModelViewModel() { Id = x.Id, ModelName = x.Name })
+                            .ToListAsync();
 
-            var getAllModelsByBrand = this.data.Models
-                                                .Where(x => x.BrandId == brandId)
-                                                .Select(x => new ModelViewModel() { Id = x.Id, ModelName = x.Name })
-                                                .ToList();
-
-            return getAllModelsByBrand;
-        }
 
         public IQueryable<Data.Models.Car> GetCarsByBrand(int brandId)
         => this.data.Cars.Where(x => x.Model.BrandId == brandId);
@@ -311,8 +307,8 @@ namespace CarsBg_System.Services.Car
             IsChecked = false
         }).ToList();
 
-        public IEnumerable<MyCarsViewModel> GetMyCars(string userId)
-        => this.data.Cars
+        public async Task<IEnumerable<MyCarsViewModel>> GetMyCarsAsync(string userId)
+        => await this.data.Cars
             .Where(x => x.UserId == userId && x.IsDeleted == false)
             .Select(x => new MyCarsViewModel()
             {
@@ -320,10 +316,10 @@ namespace CarsBg_System.Services.Car
                 HorsePower = x.HorsePower,
                 Name = x.Name
             })
-            .ToList();
+            .ToListAsync();
 
 
-        private async Task<List<TopCarsViewModel>> GetTopCars()
+        private async Task<List<TopCarsViewModel>> GetTopCarsAsync()
         => await this.data.Cars
                             .Where(x => x.IsDeleted == false && x.Status.StatusName == "Top")
                             .OrderByDescending(x => x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money)
@@ -338,7 +334,7 @@ namespace CarsBg_System.Services.Car
 
 
 
-        private async Task<List<VipCarsViewModel>> GetVipCars()
+        private async Task<List<VipCarsViewModel>> GetVipCarsAsync()
         => await this.data.Cars
                             .Where(x => x.IsDeleted == false && x.Status.StatusName == "Vip")
                             .OrderByDescending(x => x.Prices.OrderByDescending(x => x.Date).FirstOrDefault().Money)

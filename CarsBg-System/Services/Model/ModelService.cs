@@ -16,7 +16,7 @@ namespace CarsBg_System.Services.Model
         }
 
 
-        public bool Add(ModelFormModel modelForm)
+        public async Task<bool> AddAsync(ModelFormModel modelForm)
         {
             bool isHave = this.data.Models.Any(x => x.Name == modelForm.Name);
 
@@ -27,13 +27,13 @@ namespace CarsBg_System.Services.Model
 
             var currentModel = new CarsBg_System.Data.Models.Model() { Name = modelForm.Name, BrandId = modelForm.BrandId };
 
-            this.data.Models.Add(currentModel);
-            this.data.SaveChanges();
+            await this.data.Models.AddAsync(currentModel);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int modelId)
+        public async Task<bool> DeleteAsync(int modelId)
         {
             var model = this.data.Models.Where(x => x.Id == modelId).FirstOrDefault();
 
@@ -43,7 +43,7 @@ namespace CarsBg_System.Services.Model
             }
 
             model.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

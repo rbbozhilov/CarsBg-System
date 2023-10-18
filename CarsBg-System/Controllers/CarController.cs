@@ -62,10 +62,10 @@ namespace CarsBg_System.Controllers
         }
 
 
-        public IActionResult Index([FromQuery] CarFormModel query)
+        public async Task<IActionResult> Index([FromQuery] CarFormModel query)
         {
 
-            var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
+            var models = await this.carService.GetAllModelsByBrandAsync(query.BrandId > 0 ? query.BrandId : 1);
 
             return View(new CarFormModel()
             {
@@ -79,9 +79,9 @@ namespace CarsBg_System.Controllers
             });
         }
 
-        public IActionResult Search([FromQuery] CarFormModel query)
+        public async Task<IActionResult> Search([FromQuery] CarFormModel query)
         {
-            
+
             if (!this.brandService.IsHaveBrandById(query.BrandId))
             {
                 this.ModelState.AddModelError(nameof(query.BrandId), "Don't try stupid things!");
@@ -203,16 +203,16 @@ namespace CarsBg_System.Controllers
                 carQuery = this.carService.GetCarsByRegion(query.RegionId, carQuery);
             }
 
-            var cars = this.carService.GetAllCarsBySearch(carQuery);
+            var cars = await this.carService.GetAllCarsBySearchAsync(carQuery);
 
             return View("CarsBySearch", cars);
         }
 
 
         [Authorize]
-        public IActionResult Add([FromQuery] AddCarFormModel query)
+        public async Task<IActionResult> Add([FromQuery] AddCarFormModel query)
         {
-            var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
+            var models = await this.carService.GetAllModelsByBrandAsync(query.BrandId > 0 ? query.BrandId : 1);
 
             return View(new AddCarFormModel()
             {
@@ -232,7 +232,7 @@ namespace CarsBg_System.Controllers
         [RequestSizeLimit(300 * 1024 * 1024)]
         public async Task<IActionResult> Add(AddCarFormModel query, IFormFile[] images)
         {
-            var models = this.carService.GetAllModelsByBrand(query.BrandId > 0 ? query.BrandId : 1);
+            var models = await this.carService.GetAllModelsByBrandAsync(query.BrandId > 0 ? query.BrandId : 1);
 
             if (images.Length > 20)
             {
@@ -266,7 +266,7 @@ namespace CarsBg_System.Controllers
 
             var extras = this.carService.GetChoicedExtras(selectedExtras);
 
-            var carId = this.carService.AddCar(query, userId, extras);
+            var carId = await this.carService.AddCarAsync(query, userId, extras);
 
             await this.imageService.Process(images.Select(i => new ImageInputModel()
             {
@@ -279,20 +279,20 @@ namespace CarsBg_System.Controllers
         }
 
         [Authorize]
-        public IActionResult MyCars()
+        public async Task<IActionResult> MyCars()
         {
             var userId = ClaimsPrincipalExtenssions.GetId(this.User);
 
-            var myCars = this.carService.GetMyCars(userId);
+            var myCars = await this.carService.GetMyCarsAsync(userId);
 
             return View(myCars);
         }
 
         [Authorize]
-        public IActionResult EditCar(int id)
+        public async Task<IActionResult> EditCar(int id)
         {
 
-            var currentCar = this.carService.GetCarById(id);
+            var currentCar = await this.carService.GetCarByIdAsync(id);
 
             if (!this.CheckUserCar(id))
             {
@@ -325,7 +325,7 @@ namespace CarsBg_System.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult EditCar(EditCarFormModel carModel, int id)
+        public async Task<IActionResult> EditCar(EditCarFormModel carModel, int id)
         {
 
             if (!this.CheckUserCar(id))
@@ -338,7 +338,7 @@ namespace CarsBg_System.Controllers
                 return View(carModel);
             }
 
-            var isEditted = this.carService.EditCar(
+            var isEditted = await this.carService.EditCarAsync(
                                       id,
                                       carModel.Name,
                                       carModel.Description,
@@ -364,7 +364,7 @@ namespace CarsBg_System.Controllers
         }
 
         [Authorize]
-        public IActionResult DeleteCar(int id)
+        public async Task<IActionResult> DeleteCar(int id)
         {
 
             if (!this.CheckUserCar(id))
@@ -372,7 +372,7 @@ namespace CarsBg_System.Controllers
                 return BadRequest();
             }
 
-            bool isDeleted = this.carService.Delete(id);
+            bool isDeleted = await this.carService.DeleteAsync(id);
 
             if (!isDeleted)
             {
@@ -382,10 +382,10 @@ namespace CarsBg_System.Controllers
             return RedirectToAction(nameof(MyCars));
         }
 
-        public IActionResult ViewCar(int id)
+        public async Task<IActionResult> ViewCar(int id)
         {
 
-            var currentCar = this.carService.ShowCarFullInformation(id);
+            var currentCar = await this.carService.ShowCarFullInformationAsync(id);
 
             if (currentCar == null)
             {
@@ -404,7 +404,7 @@ namespace CarsBg_System.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddPostToCar(PostFormModel post,int id)
+        public async Task<IActionResult> AddPostToCar(PostFormModel post, int id)
         {
 
             if (!ModelState.IsValid)
@@ -414,9 +414,9 @@ namespace CarsBg_System.Controllers
 
             var userEmail = this.User.Identity.Name;
             var getIndex = userEmail.IndexOf('@');
-            var userName = userEmail.Substring(0,getIndex);
+            var userName = userEmail.Substring(0, getIndex);
 
-            var addPost = this.postService.AddPost(id, post.Comment,userName);
+            var addPost = await this.postService.AddPostAsync(id, post.Comment, userName);
 
             if (!addPost)
             {
@@ -428,10 +428,10 @@ namespace CarsBg_System.Controllers
         }
 
         [Authorize]
-        public IActionResult AddReport(int id,int carId)
+        public async Task<IActionResult> AddReport(int id, int carId)
         {
 
-            var isReported = this.reportService.AddReport(id, ClaimsPrincipalExtenssions.GetId(this.User));
+            var isReported = await this.reportService.AddReportAsync(id, ClaimsPrincipalExtenssions.GetId(this.User));
 
             if (!isReported)
             {

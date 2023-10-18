@@ -15,7 +15,7 @@ namespace CarsBg_System.Services.Region
             this.data = data;
         }
 
-        public bool Add(RegionFormModel region)
+        public async Task<bool> AddAsync(RegionFormModel region)
         {
             bool isHave = this.data.Regions.Any(x => x.Name == region.Name);
 
@@ -26,13 +26,13 @@ namespace CarsBg_System.Services.Region
 
             var currentRegion = new CarsBg_System.Data.Models.Region() { Name = region.Name };
 
-            this.data.Regions.Add(currentRegion);
-            this.data.SaveChanges();
+            await this.data.Regions.AddAsync(currentRegion);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int regionId)
+        public async Task<bool> DeleteAsync(int regionId)
         {
             var region = this.data.Regions.Where(x => x.Id == regionId).FirstOrDefault();
 
@@ -42,7 +42,7 @@ namespace CarsBg_System.Services.Region
             }
 
             region.IsDeleted = true;
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }

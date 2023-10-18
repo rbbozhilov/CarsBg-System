@@ -7,9 +7,9 @@ namespace CarsBg_System.Services.Category
     public interface ICategoryService
     {
 
-        bool Add(CategoryFormModel category);
+        Task<bool> AddAsync(CategoryFormModel category);
 
-        bool Delete(int categoryId);
+        Task<bool> DeleteAsync(int categoryId);
 
         bool IsHaveCategoryById(int id);
 

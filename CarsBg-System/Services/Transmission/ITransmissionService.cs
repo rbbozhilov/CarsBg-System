@@ -7,9 +7,9 @@ namespace CarsBg_System.Services.Transmission
     public interface ITransmissionService
     {
 
-        bool Add(TransmissionFormModel transmission);
+        Task<bool> AddAsync(TransmissionFormModel transmission);
 
-        bool Delete(int transmissionId);
+        Task<bool> DeleteAsync(int transmissionId);
 
         bool IsHaveTransmissionById(int id);
 

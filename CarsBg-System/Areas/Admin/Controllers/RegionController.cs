@@ -24,14 +24,14 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRegion(RegionFormModel regionModel)
+        public async Task<IActionResult> AddRegion(RegionFormModel regionModel)
         {
             if (!ModelState.IsValid)
             {
                 return View(regionModel);
             }
 
-            bool isDone = this.regionService.Add(regionModel);
+            bool isDone = await this.regionService.AddAsync(regionModel);
 
             if (!isDone)
             {
@@ -50,9 +50,9 @@ namespace CarsBg_System.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            bool isDeleted = this.regionService.Delete(id);
+            bool isDeleted = await this.regionService.DeleteAsync(id);
 
             if (!isDeleted)
             {

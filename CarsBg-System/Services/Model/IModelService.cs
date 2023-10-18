@@ -6,9 +6,9 @@ namespace CarsBg_System.Services.Model
     public interface IModelService
     {
 
-        bool Add(ModelFormModel modelForm);
+        Task<bool> AddAsync(ModelFormModel modelForm);
 
-        bool Delete(int modelId);
+        Task<bool> DeleteAsync(int modelId);
 
         bool IsHaveModelById(int id);
 

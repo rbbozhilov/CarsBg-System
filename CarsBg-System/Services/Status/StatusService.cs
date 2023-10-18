@@ -14,7 +14,7 @@ namespace CarsBg_System.Services.Status
             this.data = data;
         }
 
-        public bool Add(StatusFormModel status)
+        public async Task<bool> AddAsync(StatusFormModel status)
         {
             bool isHave = this.data.Statuses.Any(x => x.StatusName == status.Name);
 
@@ -25,13 +25,13 @@ namespace CarsBg_System.Services.Status
 
             var currentStatus = new CarsBg_System.Data.Models.Status() { StatusName = status.Name };
 
-            this.data.Statuses.Add(currentStatus);
-            this.data.SaveChanges();
+            await this.data.Statuses.AddAsync(currentStatus);
+            await this.data.SaveChangesAsync();
 
             return true;
         }
 
-        public bool Delete(int statusId)
+        public async Task<bool> DeleteAsync(int statusId)
         {
             var status = this.data.Statuses.Where(x => x.Id == statusId).FirstOrDefault();
 
@@ -41,7 +41,7 @@ namespace CarsBg_System.Services.Status
             }
 
             this.data.Statuses.Remove(status);
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return true;
         }
