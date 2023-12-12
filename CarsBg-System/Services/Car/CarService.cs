@@ -1,5 +1,6 @@
 ﻿using CarsBg_System.Areas.Admin.Views.ViewModels;
 using CarsBg_System.Data;
+using CarsBg_System.Models.Api.Car;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
@@ -166,6 +167,17 @@ namespace CarsBg_System.Services.Car
         public CarsBg_System.Data.Models.Car GetCarById(int id)
         => this.data.Cars.Include(x => x.Prices).FirstOrDefault(x => x.Id == id);
 
+        public IList<CarResponseModel> GetTopCar()
+        => this.data.Cars
+                    .Where(x => x.IsDeleted == false && x.Status.StatusName == "Top")
+                    .Select(c => new CarResponseModel()
+                    {
+                        Name = c.Name,
+                        Mark = c.Model.Brand.Name,
+                        Price = c.Prices.First().Money
+                    }
+                    )
+                     .ToList();
 
         public async Task<HomeViewModel> GetVipAndTopCars()
         => new HomeViewModel()

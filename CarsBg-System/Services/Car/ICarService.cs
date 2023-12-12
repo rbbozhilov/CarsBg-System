@@ -1,5 +1,6 @@
 ﻿using CarsBg_System.Areas.Admin.Views.ViewModels;
 using CarsBg_System.Data.Models;
+using CarsBg_System.Models.Api.Car;
 using CarsBg_System.Models.Car;
 using CarsBg_System.Views.ViewModels.Cars;
 using CarsBg_System.Views.ViewModels.Extras;
@@ -38,6 +39,9 @@ namespace CarsBg_System.Services.Car
 
 
         CarsBg_System.Data.Models.Car GetCarById(int carId);
+
+        IList<CarResponseModel> GetTopCar();
+
 
         int AddCar(AddCarFormModel carModel, string userId, IList<CarsBg_System.Data.Models.Extra> extras);
 
